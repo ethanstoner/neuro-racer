@@ -46,7 +46,58 @@ def _chicane() -> np.ndarray:
                      400 + 240 * np.sin(t) + 80 * np.sin(3 * t)], axis=1)
 
 
-BUILDERS = {"oval": _oval, "snake": _snake, "chicane": _chicane}
+def _clover() -> np.ndarray:
+    """Three lobes with concave joins -- reverse curvature three times a lap."""
+    t = _T
+    r = 250 + 70 * np.cos(3 * t)
+    return np.stack([600 + r * np.cos(t) * 1.55, 400 + r * np.sin(t) * 1.05], axis=1)
+
+
+def _peanut() -> np.ndarray:
+    """Two big lobes pinched in the middle. Fast, with one hard direction change."""
+    t = _T
+    r = 270 + 90 * np.cos(2 * t)
+    return np.stack([600 + r * np.cos(t) * 1.45, 400 + r * np.sin(t) * 0.95], axis=1)
+
+
+def _ripple() -> np.ndarray:
+    """Four shallow waves round a wide loop -- constant small corrections."""
+    t = _T
+    r = 260 + 60 * np.cos(4 * t)
+    return np.stack([600 + r * np.cos(t) * 1.5, 400 + r * np.sin(t) * 1.0], axis=1)
+
+
+def _keyhole() -> np.ndarray:
+    """A wide fast sweep narrowing into one tight end.
+
+    The first attempt here was a "teardrop" (r = 300 - 110cos t) which probed
+    out as 186px off-centre with 0% reverse curvature and a 251px worst corner
+    -- an oval in disguise, which is the one thing a held-out track must not
+    be. Genuine hairpins all pinched below 35px, tighter than the car can turn
+    at any speed, so they were undriveable rather than hard.
+    """
+    t = _T
+    r_out = 330 - 60 * np.cos(2 * t)
+    r_in = 300 - 150 * np.cos(t)
+    return np.stack([600 + r_out * np.cos(t) * 1.3,
+                     400 + r_in * np.sin(t) * 0.8], axis=1)
+
+
+BUILDERS = {
+    "oval": _oval,
+    "chicane": _chicane,
+    "snake": _snake,
+    "clover": _clover,
+    "peanut": _peanut,
+    "ripple": _ripple,
+    "keyhole": _keyhole,
+}
+
+# Tracks used for training runs. The rest are held out as unseen test tracks --
+# a champion that has never encountered them is the only honest way to tell a
+# learned policy from a memorised trajectory.
+TRAINING = ("oval", "chicane", "snake")
+HELD_OUT = ("clover", "peanut", "ripple", "keyhole")
 
 
 def load(name: str, cfg: Config) -> Track:

@@ -20,6 +20,7 @@ class Frames:
     angle: np.ndarray        # (T, N)
     alive: np.ndarray        # (T, N)
     rays: np.ndarray         # (T, N, R)
+    speed: np.ndarray        # (T, N) normalised -- the 8th network input
     activations: np.ndarray  # (T, N, H)
     controls: np.ndarray     # (T, N, 3)
 
@@ -61,6 +62,7 @@ def run_generation(genomes, track, cfg: Config, record: bool = False,
             angle=np.zeros((T, n), dtype=np.float32),
             alive=np.zeros((T, n), dtype=bool),
             rays=np.zeros((T, n, cfg.n_rays), dtype=np.float32),
+            speed=np.zeros((T, n), dtype=np.float32),
             activations=np.zeros((T, n, cfg.n_hidden), dtype=np.float32),
             controls=np.zeros((T, n, cfg.n_outputs), dtype=np.float32),
         )
@@ -98,6 +100,7 @@ def run_generation(genomes, track, cfg: Config, record: bool = False,
             frames.angle[t] = car.angle
             frames.alive[t] = alive
             frames.rays[t] = rays
+            frames.speed[t] = inputs[:, -1]
             frames.activations[t] = hidden
             frames.controls[t] = controls
 
@@ -107,8 +110,8 @@ def run_generation(genomes, track, cfg: Config, record: bool = False,
 
     if record and ticks < T:
         frames = Frames(frames.pos[:ticks], frames.angle[:ticks], frames.alive[:ticks],
-                        frames.rays[:ticks], frames.activations[:ticks],
-                        frames.controls[:ticks])
+                        frames.rays[:ticks], frames.speed[:ticks],
+                        frames.activations[:ticks], frames.controls[:ticks])
 
     return GenerationResult(tracker.scores(), alive, tracker.laps,
                             tracker.lap_time, ticks, frames)

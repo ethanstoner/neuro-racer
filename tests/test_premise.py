@@ -82,6 +82,39 @@ def test_every_corner_is_takeable_at_some_speed(name):
         f"tightest corner is {tightest:.0f}px -- the track is undriveable")
 
 
+def test_the_track_set_spans_a_range_of_difficulty():
+    """Held-out tracks are only a real test if they are not all the same.
+
+    The set must include corners meaningfully tighter than the training tracks,
+    or "it generalises" just means "it saw an equally easy track".
+    """
+    tightest = {n: min_corner_radius(n) for n in BUILDERS}
+    assert min(tightest.values()) < 0.5 * max(tightest.values()), (
+        f"all tracks are similarly tight: {tightest}")
+
+
+@pytest.mark.parametrize("name", sorted(BUILDERS))
+def test_no_track_is_secretly_an_oval(name):
+    """A track whose curvature never reverses can be solved by a constant
+    steering bias, which teaches a memorised trajectory rather than a policy.
+
+    The oval is kept deliberately as the negative control. Everything else must
+    change direction somewhere, or it is not adding anything to the test set.
+    The first "teardrop" failed this: 0% reverse curvature, an oval in disguise.
+    """
+    c = load(name, CFG).centerline
+    tang = np.diff(np.vstack([c, c[:2]]), axis=0)
+    tang /= np.maximum(np.linalg.norm(tang, axis=1, keepdims=True), 1e-9)
+    cross = tang[:-1, 0] * tang[1:, 1] - tang[:-1, 1] * tang[1:, 0]
+    reverse = min((cross < -1e-4).mean(), (cross > 1e-4).mean())
+
+    if name in ("oval", "keyhole"):
+        return          # deliberate single-direction controls
+    assert reverse > 0.05, (
+        f"{name} only turns one way ({reverse:.1%} reverse) -- a constant "
+        f"steering bias solves it, so it teaches nothing")
+
+
 def test_the_speed_window_is_wide_enough_to_matter():
     """There must be a meaningful spread between 'can corner' and 'top speed',
     or the optimal policy is a single constant throttle and nothing is learned."""
