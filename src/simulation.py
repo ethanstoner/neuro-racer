@@ -34,10 +34,21 @@ class GenerationResult:
     frames: Optional[Frames] = None
 
 
-def run_generation(genomes, track, cfg: Config, record: bool = False) -> GenerationResult:
+def run_generation(genomes, track, cfg: Config, record: bool = False,
+                   starts=None) -> GenerationResult:
+    """starts is an optional (N, 3) array of (x, y, heading) spawn poses.
+
+    Training always uses the track's single start pose. Overriding it is how
+    you tell a learned policy apart from a memorised trajectory: a real policy
+    survives being dropped anywhere on the track, a memorised one does not.
+    """
     n = len(genomes)
     sx, sy, sh = track.start_pose
     car = CarState.spawn(n, sx, sy, sh)
+    if starts is not None:
+        starts = np.asarray(starts, dtype=np.float32)
+        car.pos[:] = starts[:, :2]
+        car.angle[:] = starts[:, 2]
     alive = np.ones(n, dtype=bool)
     tracker = FitnessTracker(n, cfg)
 
