@@ -34,35 +34,51 @@ venv\Scripts\python.exe train.py --track snake --generations 200   # headless
 Trained 200 generations, population 100, seed 1. Lap times are the best
 achieved by any car.
 
-| Track | Lap length | Tightest corner | Best lap | First lap at | Population finishing by gen 200 |
+| Track | Lap length | Tightest corner | Best lap | First lap at | Finishing by gen 200 |
 | --- | --- | --- | --- | --- | --- |
 | oval | 2166px | 161px | **5.98s** | generation 1 | — |
+| chicane | 2512px | 172px | **7.87s** | generation 8 | 97 / 100 |
 | snake | 2436px | 70px | **8.47s** | generation 12 | 97 / 100 |
-| chicane | 2512px | 172px | **7.88s** | — | 97 / 100 |
 
 ### The interesting result
 
-Two champions trained identically, differing only in which track they saw.
-Each was then dropped at 72 different starting poses (24 points around the lap
-× 3 lateral offsets) on all three tracks:
+Three champions trained identically — same algorithm, same 99 weights, same
+seed — differing only in which track they saw. Each was then dropped at 72
+different starting poses (24 points around the lap × 3 lateral offsets) on all
+three tracks, and scored on how many of those starts it could complete a lap
+from:
 
 | Champion | oval | snake | chicane |
 | --- | --- | --- | --- |
-| trained on **oval** | 6% complete a lap | 0% | 0% |
+| trained on **oval** | 6% | 0% | 0% |
+| trained on **chicane** | **100%** | 0% | **100%** |
 | trained on **snake** | **100%** | **100%** | **100%** |
 
-The oval champion has the faster lap time and cannot drive. It never learned a
-policy — it memorised one open-loop trajectory that fits one lap of one track
-from one starting position, and it fails even on its own training track if you
-move it thirty pixels sideways.
+The oval champion has the fastest lap time and cannot drive. It never learned a
+policy — it memorised one open-loop trajectory, and it fails even on its own
+training track if you move it thirty pixels sideways. An oval turns one way
+with near-constant curvature, so a fixed steering bias solves it and there is
+no selection pressure to read the sensors at all.
 
-An oval turns one way with near-constant curvature, so a fixed steering bias
-solves it and there is no selection pressure to read the sensors at all.
-Snake's S-bends make a fixed bias useless, which forces the network to actually
-use its rays — and a policy that reads its sensors transfers to unseen tracks
-for free.
+The chicane champion is the one that explains the mechanism. It *is* a real
+sensor-reading policy — 100% robust from any start on two tracks. But it dies
+on snake, and it dies at exactly one place: the 70px hairpin. Chicane's
+tightest corner is 172px, and the car must slow to ~145 px/s for 70px versus
+~280 px/s for 172px. It learned a genuine policy for the range of corners it
+was shown, and no further.
+
+**The generalisation ceiling is set by the hardest corner in the training
+distribution** — not by the algorithm and not by the network size.
 
 Full write-up: [docs/devlog/05-it-memorised-the-track.md](docs/devlog/05-it-memorised-the-track.md)
+
+The final champions are committed under `champions/`, so the numbers above can
+be re-measured rather than taken on trust:
+
+```bash
+venv\Scripts\python.exe evaluate.py --run champions/snake --track oval --shot
+venv\Scripts\python.exe robustness.py --run champions/snake --all-tracks
+```
 
 ## How it works
 

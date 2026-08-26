@@ -30,7 +30,7 @@ A lap time is just a number, and the number said something implausible, so I
 built `evaluate.py` — replay a saved champion and draw its actual trajectory
 over the track, coloured by speed.
 
-![generation 0 riding the wall](img/eval-gen0-oval.png)
+![generation 0 riding the wall](img/wall-hug-gen0.png)
 
 There it is. The "champion" is pinned against the outer wall for the entire
 lap, sliding along it like a bumper-car rail.
@@ -77,7 +77,7 @@ Same seed, same everything else:
 And the champion now drives a real racing line — turning in early, cutting to
 the inside through the corners, full 420 px/s down the straights:
 
-![generation 79 racing line](img/eval-gen79-oval.png)
+![generation 79 racing line](img/eval-oval79-on-oval.png)
 
 The lesson is not "I had a bug". It is that **the population will find every
 gap between what you rewarded and what you meant**, immediately, on the first
@@ -87,5 +87,14 @@ genomes is already a decent search of "is there a cheap trick here".
 
 I added `test_car_cannot_ride_the_wall`, which checks that every legal car
 centre has a full car radius of tarmac in all four directions around it.
+
+The exploit is still reproducible on demand — `tools/reproduce_wall_hug.py`
+sets `car_radius` to 0, which collapses `body_ok` back onto the raw tarmac mask
+and recreates the original behaviour exactly:
+
+```
+generation 0, car_radius=0: 1 of 100 completed a lap, best score 10,237.5
+generation 0, car_radius=6: 0 of 100 completed a lap, best score 418.3
+```
 
 Next: what it looks like while it learns.

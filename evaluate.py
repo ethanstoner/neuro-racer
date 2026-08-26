@@ -77,7 +77,11 @@ if args.shot:
     screen.blit(font.render(label, True, P.TEXT), (16, 16))
     screen.blit(font.render("blue = slow, yellow = fast", True, P.TEXT_DIM), (16, 40))
 
-    out = f"docs/devlog/img/eval-gen{entry['generation']}-{track_name}.png"
+    # Name by training track as well as generation: two runs can easily produce
+    # a champion at the same generation number, and naming by generation alone
+    # silently overwrites one with the other.
+    out = (f"docs/devlog/img/eval-{trained_on}{entry['generation']}"
+           f"-on-{track_name}.png")
     pygame.image.save(screen, out)
     print(f"  wrote {out}")
     pygame.quit()

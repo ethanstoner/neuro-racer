@@ -1,0 +1,20 @@
+[
+  {
+    "track": "chicane",
+    "generations": 200,
+    "first_lap_generation": 8,
+    "best_lap": 7.866714954376221
+  },
+  {
+    "track": "oval",
+    "generations": 80,
+    "first_lap_generation": 1,
+    "best_lap": 5.983356475830078
+  },
+  {
+    "track": "snake",
+    "generations": 200,
+    "first_lap_generation": 12,
+    "best_lap": 8.46670913696289
+  }
+]
