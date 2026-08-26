@@ -75,3 +75,44 @@ def test_builtin_track_progress_is_usable(name):
     t = load(name, Config())
     p = t.progress[t.drivable]
     assert p.min() < 0.05 and p.max() > 0.95
+
+
+@pytest.mark.parametrize("name", sorted(BUILDERS))
+def test_track_does_not_self_intersect(name):
+    """Two parts of the track that are far apart along the lap must not come
+    within a track width of each other.
+
+    This is not cosmetic. Progress is one value per pixel, so where two parts
+    of the track overlap, a pixel cannot say which part of the lap it belongs
+    to -- a car driving through the overlap gets a garbage progress delta and
+    its fitness becomes meaningless. A figure-eight fails this with 2px of
+    separation, which is exactly why there isn't one.
+    """
+    cfg = Config()
+    c = load(name, cfg).centerline
+    seg = np.linalg.norm(np.diff(np.vstack([c, c[:1]]), axis=0), axis=1)
+    total = seg.sum()
+    s = np.concatenate([[0.0], np.cumsum(seg)])[:len(c)]
+
+    euclid = np.linalg.norm(c[:, None, :] - c[None, :, :], axis=2)
+    arc = np.abs(s[:, None] - s[None, :])
+    arc = np.minimum(arc, total - arc)          # circular distance along the lap
+
+    distant = arc > cfg.track_width * 1.5
+    assert distant.any()
+    assert euclid[distant].min() > cfg.track_width, (
+        f"{name} folds back on itself: closest distant approach is "
+        f"{euclid[distant].min():.1f}px, needs > {cfg.track_width}px")
+
+
+@pytest.mark.parametrize("name", sorted(BUILDERS))
+def test_track_start_is_not_on_a_blind_corner(name):
+    """Every ray from the start pose must return something finite, and the car
+    must not be spawned facing a wall it cannot avoid."""
+    from src.sensors import cast
+    cfg = Config()
+    t = load(name, cfg)
+    x, y, h = t.start_pose
+    rays = cast(np.float32([[x, y]]), np.float32([h]), t.drivable, cfg)
+    assert np.isfinite(rays).all()
+    assert rays[0, cfg.n_rays // 2] > 0.15, "spawned nose-first into a wall"
