@@ -37,12 +37,25 @@ def build_track_surface(track) -> pygame.Surface:
 
 
 def draw_cars(surf, pos, angle, alive, leader=-1, radius=6):
+    # Leader drawn last and ringed, so it stays findable inside a tight pack --
+    # by the time the population converges, a hundred cars overlap almost
+    # exactly and a colour change alone is not enough to pick it out.
     for i in range(len(pos)):
-        colour = P.CAR_LEAD if i == leader else (P.CAR_ALIVE if alive[i] else P.CAR_DEAD)
-        x, y = float(pos[i, 0]), float(pos[i, 1])
-        nose = (x + np.cos(angle[i]) * radius * 1.9, y + np.sin(angle[i]) * radius * 1.9)
-        pygame.draw.circle(surf, colour, (int(x), int(y)), radius)
-        pygame.draw.line(surf, colour, (int(x), int(y)), (int(nose[0]), int(nose[1])), 2)
+        if i == leader:
+            continue
+        _car(surf, pos[i], angle[i], radius,
+             P.CAR_ALIVE if alive[i] else P.CAR_DEAD)
+    if 0 <= leader < len(pos):
+        x, y = float(pos[leader, 0]), float(pos[leader, 1])
+        pygame.draw.circle(surf, P.CAR_LEAD, (int(x), int(y)), radius + 6, 2)
+        _car(surf, pos[leader], angle[leader], radius, P.CAR_LEAD)
+
+
+def _car(surf, p, a, radius, colour):
+    x, y = float(p[0]), float(p[1])
+    nose = (x + np.cos(a) * radius * 1.9, y + np.sin(a) * radius * 1.9)
+    pygame.draw.circle(surf, colour, (int(x), int(y)), radius)
+    pygame.draw.line(surf, colour, (int(x), int(y)), (int(nose[0]), int(nose[1])), 2)
 
 
 def draw_rays(surf, pos, angle, rays, cfg):
