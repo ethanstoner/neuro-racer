@@ -76,7 +76,9 @@ def run_generation(genomes, track, cfg: Config, record: bool = False) -> Generat
 
         ix = np.clip(car.pos[:, 0].astype(np.int32), 0, w - 1)
         iy = np.clip(car.pos[:, 1].astype(np.int32), 0, h - 1)
-        alive &= track.drivable[iy, ix]
+        # body_ok, not drivable: the car has a size, and touching a wall with
+        # any part of it ends the run. Sensors still see the real wall.
+        alive &= track.body_ok[iy, ix]
 
         alive = tracker.update(track.progress[iy, ix], speed, alive, cfg.dt)
 

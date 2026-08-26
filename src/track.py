@@ -35,7 +35,8 @@ def _resample_closed(points: np.ndarray, spacing: float = 4.0) -> np.ndarray:
 class Track:
     name: str
     centerline: np.ndarray      # (M, 2), evenly spaced, closed loop
-    drivable: np.ndarray        # (H, W) bool
+    drivable: np.ndarray        # (H, W) bool -- the tarmac, as drawn and sensed
+    body_ok: np.ndarray         # (H, W) bool -- centres where the whole car fits
     progress: np.ndarray        # (H, W) float32 in [0, 1)
     checkpoint: np.ndarray      # (H, W) int16
     start_pose: tuple           # (x, y, heading_radians)
@@ -74,9 +75,29 @@ class Track:
 
         drivable = best_d2 <= np.float32(half * half)
 
+        # Where the car's whole body fits, not just its centre point.
+        #
+        # Collision has to account for car size or a car can ride with half its
+        # body through the wall at zero cost -- and it will, because hugging the
+        # outer wall of a smooth corner is the cheapest way to get round it.
+        # The very first random population found exactly that exploit.
+        #
+        # Since the track is by construction "everything within half-width of
+        # the centerline", shrinking the half-width by the car radius gives
+        # precisely the set of centres where a disc-shaped car fits. No
+        # morphological erosion needed, and it costs nothing at runtime.
+        inner = half - cfg.car_radius
+        if inner <= 1.0:
+            raise ValueError(
+                f"track_width {cfg.track_width} is too narrow for a car of "
+                f"radius {cfg.car_radius}: nothing would be driveable")
+        body_ok = best_d2 <= np.float32(inner * inner)
+
         # Hard border so out-of-bounds ray samples read as wall.
         drivable[0, :] = drivable[-1, :] = False
         drivable[:, 0] = drivable[:, -1] = False
+        body_ok[0, :] = body_ok[-1, :] = False
+        body_ok[:, 0] = body_ok[:, -1] = False
 
         progress = (best_i.astype(np.float32) / m)
         progress[~drivable] = 0.0
@@ -89,5 +110,5 @@ class Track:
         start = (float(center[0][0]), float(center[0][1]), float(np.arctan2(d[1], d[0])))
 
         seg = np.linalg.norm(np.diff(np.vstack([center, center[:1]]), axis=0), axis=1)
-        return cls(name, center, drivable, progress, checkpoint,
+        return cls(name, center, drivable, body_ok, progress, checkpoint,
                    start, n_checkpoints, float(seg.sum()))

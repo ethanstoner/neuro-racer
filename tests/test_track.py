@@ -106,6 +106,38 @@ def test_track_does_not_self_intersect(name):
 
 
 @pytest.mark.parametrize("name", sorted(BUILDERS))
+def test_car_cannot_ride_the_wall(name):
+    """A car's body must not be allowed to overlap a wall.
+
+    The very first random population discovered that pinning itself against
+    the outer wall of a corner was the cheapest way round, because collision
+    only tested the car's centre point. body_ok closes that: every legal centre
+    is at least one car radius from the tarmac edge.
+    """
+    cfg = Config()
+    t = load(name, cfg)
+    assert t.body_ok.sum() < t.drivable.sum(), "body mask is not tighter at all"
+    assert not (t.body_ok & ~t.drivable).any(), "body mask escapes the tarmac"
+
+    # Every legal centre must have a full car radius of tarmac around it.
+    ys, xs = np.nonzero(t.body_ok)
+    take = slice(None, None, max(1, len(xs) // 4000))
+    ys, xs = ys[take], xs[take]
+    r = int(cfg.car_radius)
+    for dx, dy in ((r, 0), (-r, 0), (0, r), (0, -r)):
+        assert t.drivable[np.clip(ys + dy, 0, cfg.height - 1),
+                          np.clip(xs + dx, 0, cfg.width - 1)].all(), (
+            f"{name}: a legal centre has wall within {r}px at offset {(dx, dy)}")
+
+
+@pytest.mark.parametrize("name", sorted(BUILDERS))
+def test_start_pose_leaves_room_for_the_car(name):
+    t = load(name, Config())
+    x, y, _ = t.start_pose
+    assert t.body_ok[int(y), int(x)], "car spawns already clipping a wall"
+
+
+@pytest.mark.parametrize("name", sorted(BUILDERS))
 def test_track_start_is_not_on_a_blind_corner(name):
     """Every ray from the start pose must return something finite, and the car
     must not be spawned facing a wall it cannot avoid."""

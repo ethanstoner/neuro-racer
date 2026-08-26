@@ -83,7 +83,7 @@ while running:
     x = int(np.clip(car.pos[0, 0], 0, CFG.width - 1))
     y = int(np.clip(car.pos[0, 1], 0, CFG.height - 1))
 
-    if not track.drivable[y, x]:
+    if not track.body_ok[y, x]:
         crashes += 1
         reset()
     else:
