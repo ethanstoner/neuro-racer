@@ -174,15 +174,21 @@ everywhere.
 
 ## Layout
 
+Anything you run lives at the top level. `src/` is library code with no CLI,
+`tools/` is instrumentation that measures the project rather than using it.
+
 ```
 config.py            every tunable, one frozen dataclass
+
 main.py              the live app
 train.py             headless training
 drive.py             arrow-key driving, human baseline
 evaluate.py          replay a champion, draw its trajectory by speed
-robustness.py        policy or memorised trajectory?
+preview_track.py     rasterise a track to PNG
+robustness.py        policy, or one memorised trajectory?
 heldout.py           every champion vs. the four unseen tracks
-src/
+
+src/                 library -- imported, never executed
   track.py           centerline + width -> the three masks, corner geometry
   tracks.py          3 training tracks + 4 held out
   physics.py         arcade step over population arrays
@@ -192,9 +198,23 @@ src/
   evolve.py          elitism, tournament selection, annealed mutation
   robustness.py      spawn grid + lap-rate assessment
   simulation.py      headless generation runner (never imports pygame)
+  artifacts.py       run recorder -- history.csv and champions.json
+  pump.py            background generation worker for the live app
   render/            track, network, chart and HUD panels
-tools/               benchmarks, track probes, the corner sweep
-docs/devlog/         build log
+
+tools/               instrumentation, not part of the project's own workings
+  bench.py             per-tick and per-generation cost
+  corner_sweep.py      each champion's generalisation floor
+  premise_report.py    cornering numbers behind the physics tuning
+  probe_tracks.py      score candidate track shapes before adopting them
+  profile_live_loop.py where a frame's time actually goes
+  reproduce_wall_hug.py the generation-1 exploit, on demand
+  export_champions.py  promote a run into champions/
+
+champions/           the three trained champions, committed so the published
+                     numbers can be re-measured rather than trusted
+tests/               all headless, so they run in CI
+docs/devlog/         build log, written as the thing was built
 ```
 
 `src/simulation.py` and everything below it never import pygame — a test

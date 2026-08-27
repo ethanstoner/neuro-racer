@@ -1,6 +1,33 @@
+# Local environment
 venv/
-runs/
+.venv/
+env/
+
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*.egg-info/
 .pytest_cache/
+
+# Secrets -- nothing here should ever exist in this project, but an ignore
+# rule costs nothing and a leaked key cannot be un-pushed.
+.env
+.env.*
+*.pem
+*.key
+secrets.json
+
+# Training output. Runs are reproducible from a seed; the champions worth
+# keeping are promoted into champions/ by tools/export_champions.py.
+runs/
+
+# Intermediate frames for the README animation. Only the assembled GIF is
+# committed -- 80 PNGs of the same window is not history worth keeping.
 docs/devlog/img/filmstrip/
+
+# Editors and OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

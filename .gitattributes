@@ -1,0 +1,16 @@
+# Line endings are decided here rather than by each contributor's autocrlf
+# setting. Without this, whether a checkout gets LF or CRLF depends on local
+# git config, and Windows and Linux clones of the same commit differ on disk.
+* text=auto eol=lf
+
+# Binary assets: never line-ending converted, never diffed as text.
+*.png binary
+*.gif binary
+*.jpg binary
+*.ico binary
+
+# Generated artifacts. They are committed so published results can be
+# re-measured, but they are noise in a diff and in review.
+champions/**/champions.json linguist-generated
+docs/heldout.json           linguist-generated
+docs/corner-sweep.json      linguist-generated
