@@ -13,6 +13,46 @@ def circle_centerline(cx: float, cy: float, r: float, n: int = 400) -> np.ndarra
     return np.stack([cx + r * np.cos(t), cy + r * np.sin(t)], axis=1)
 
 
+def min_centerline_radius(centerline: np.ndarray) -> float:
+    """Tightest radius of curvature anywhere on a centerline, in pixels.
+
+    The single number that predicts how hard a track is to drive, so it is used
+    both to assert the tracks are interesting (tests/test_premise.py) and to
+    order them in the held-out experiment.
+
+    Takes a centerline rather than a track name so that candidate shapes can be
+    measured before they are ever rasterised.
+    """
+    d1 = np.gradient(centerline, axis=0)
+    d2 = np.gradient(d1, axis=0)
+    num = np.abs(d1[:, 0] * d2[:, 1] - d1[:, 1] * d2[:, 0])
+    den = (d1[:, 0] ** 2 + d1[:, 1] ** 2) ** 1.5
+    curvature = num / np.maximum(den, 1e-12)
+    return float(1.0 / np.maximum(curvature.max(), 1e-12))
+
+
+def self_approach_distance(centerline: np.ndarray, track_width: float) -> float:
+    """How close the track comes to itself, ignoring neighbours along the lap.
+
+    Progress is one value per pixel, so where two distant parts of the lap
+    overlap, a pixel cannot say which part it belongs to and cars driving
+    through the overlap get garbage progress deltas. Anything at or below
+    `track_width` is unusable -- which is why there is no figure-eight.
+    """
+    seg = np.linalg.norm(np.diff(np.vstack([centerline, centerline[:1]]), axis=0), axis=1)
+    total = seg.sum()
+    s = np.concatenate([[0.0], np.cumsum(seg)])[:len(centerline)]
+
+    euclid = np.linalg.norm(centerline[:, None, :] - centerline[None, :, :], axis=2)
+    arc = np.abs(s[:, None] - s[None, :])
+    arc = np.minimum(arc, total - arc)          # circular distance along the lap
+
+    distant = arc > track_width * 1.5
+    if not distant.any():
+        return float("inf")
+    return float(euclid[distant].min())
+
+
 def _resample_closed(points: np.ndarray, spacing: float = 4.0) -> np.ndarray:
     """Resample a closed polyline to roughly even spacing.
 

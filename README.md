@@ -1,5 +1,9 @@
 # NeuroRacer
 
+[![tests](https://github.com/ethanstoner/neuro-racer/actions/workflows/tests.yml/badge.svg)](https://github.com/ethanstoner/neuro-racer/actions/workflows/tests.yml)
+[![python](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue)](https://www.python.org/)
+[![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
 Cars that teach themselves to race, with the champion's neural network drawn
 live beside the track as the generations improve.
 
@@ -40,13 +44,16 @@ achieved by any car.
 | chicane | 2512px | 172px | **7.87s** | generation 8 | 97 / 100 |
 | snake | 2436px | 70px | **8.47s** | generation 12 | 97 / 100 |
 
+Four further tracks — clover (52px), peanut (108px), ripple (51px) and keyhole
+(100px) — are **held out**. Nothing trains on them; they exist only to test
+champions on corners they have never seen.
+
 ### The interesting result
 
 Three champions trained identically — same algorithm, same 99 weights, same
 seed — differing only in which track they saw. Each was then dropped at 72
-different starting poses (24 points around the lap × 3 lateral offsets) on all
-three tracks, and scored on how many of those starts it could complete a lap
-from:
+different starting poses (24 points around the lap × 3 lateral offsets) and
+scored on how many of those starts it could complete a lap from:
 
 | Champion | oval | snake | chicane |
 | --- | --- | --- | --- |
@@ -60,23 +67,61 @@ training track if you move it thirty pixels sideways. An oval turns one way
 with near-constant curvature, so a fixed steering bias solves it and there is
 no selection pressure to read the sensors at all.
 
-The chicane champion is the one that explains the mechanism. It *is* a real
-sensor-reading policy — 100% robust from any start on two tracks. But it dies
-on snake, and it dies at exactly one place: the 70px hairpin. Chicane's
-tightest corner is 172px, and the car must slow to ~145 px/s for 70px versus
-~280 px/s for 172px. It learned a genuine policy for the range of corners it
-was shown, and no further.
-
-**The generalisation ceiling is set by the hardest corner in the training
-distribution** — not by the algorithm and not by the network size.
-
 Full write-up: [docs/devlog/05-it-memorised-the-track.md](docs/devlog/05-it-memorised-the-track.md)
 
-The final champions are committed under `champions/`, so the numbers above can
-be re-measured rather than taken on trust:
+### Then I tested it properly, and it was wrong
+
+Those three tracks were chosen by me, partly because they made the point. So
+four more were built as a held-out set, trained on by nothing, and a prediction
+was written down before running anything
+([docs/devlog/06-prediction.md](docs/devlog/06-prediction.md)):
+
+> a champion laps a track iff that track's tightest corner is at or above the
+> tightest corner it saw in training.
+
+It scored **8 of 12** champion-track pairs, and all four misses ran the same
+way — champions cleared corners *tighter* than anything they had trained on.
+Snake, trained on a 70px hairpin, laps ripple's 51px corner from 97% of starts.
+
+The held-out tracks were too coarse to locate the real limit, so
+`tools/corner_sweep.py` walks each champion down a family of tracks that differ
+only in corner tightness:
+
+| Champion | Hardest corner trained on | Measured floor | ratio |
+| --- | --- | --- | --- |
+| oval | 161px | never cleared even the widest rung | — |
+| chicane | 172px | **131px** | 0.76 |
+| snake | 70px | **51px** | 0.73 |
+
+Two champions trained on different tracks land on the same ratio, and the
+failure is a cliff rather than a slope: chicane holds 48/48 starts at 131px and
+drops to 2/48 at 106px. The corrected claim:
+
+**A champion that learns a real policy generalises to corners roughly 25%
+tighter than the hardest one it trained on, then fails abruptly. A champion
+that memorises a trajectory has no floor at all** — the oval champion fails
+rungs *gentler* than the track it trained on.
+
+Both champions on clover, a track neither had seen. Trajectory coloured by
+speed — yellow fast, blue slow:
+
+| snake-trained — laps it in 8.28s | oval-trained — did not finish |
+| --- | --- |
+| ![snake on clover](docs/devlog/img/eval-snake199-on-clover.png) | ![oval on clover](docs/devlog/img/eval-oval79-on-clover.png) |
+
+The left trace brakes to blue for both tight corners. The right one never leaves
+yellow — it never brakes at all, because it is not reading anything.
+
+Corner radius is not a complete measure of difficulty, and the write-up is
+explicit about where that shows
+([docs/devlog/07-the-held-out-test.md](docs/devlog/07-the-held-out-test.md)).
+
+The champions are committed under `champions/`, so none of this has to be taken
+on trust:
 
 ```bash
-venv\Scripts\python.exe evaluate.py --run champions/snake --track oval --shot
+venv\Scripts\python.exe heldout.py                 # the held-out table
+venv\Scripts\python.exe tools/corner_sweep.py      # the floors
 venv\Scripts\python.exe robustness.py --run champions/snake --all-tracks
 ```
 
@@ -117,17 +162,19 @@ train.py             headless training
 drive.py             arrow-key driving, human baseline
 evaluate.py          replay a champion, draw its trajectory by speed
 robustness.py        policy or memorised trajectory?
+heldout.py           every champion vs. the four unseen tracks
 src/
-  track.py           centerline + width -> the three masks
-  tracks.py          oval, snake, chicane
+  track.py           centerline + width -> the three masks, corner geometry
+  tracks.py          3 training tracks + 4 held out
   physics.py         arcade step over population arrays
   sensors.py         vectorised mask-sampling raycast
   net.py             batched 8-8-3 MLP, flat genome
   fitness.py         staged scoring, wrapped progress, idle culling
   evolve.py          elitism, tournament selection, annealed mutation
+  robustness.py      spawn grid + lap-rate assessment
   simulation.py      headless generation runner (never imports pygame)
   render/            track, network, chart and HUD panels
-tools/               benchmarks and track-shape probes
+tools/               benchmarks, track probes, the corner sweep
 docs/devlog/         build log
 ```
 
@@ -140,7 +187,7 @@ enforces it in a fresh interpreter. That is what keeps training headless.
 venv\Scripts\python.exe -m pytest
 ```
 
-89 tests. The ones worth knowing about:
+All headless, so they run in CI. The ones worth knowing about:
 
 - `test_premise.py` — the tracks must contain corners the car cannot take flat
   out, and must be driveable at some speed. Fails loudly if tuning ever makes
@@ -155,6 +202,12 @@ venv\Scripts\python.exe -m pytest
   single most important property in the fitness function.
 - `test_recording_does_not_change_the_outcome` — the renderer is a passive
   observer; what you watch is what the trainer scored.
+- `test_heldout.py` — pins the three published generalisation claims to the
+  committed champions, so a physics or fitness change cannot silently leave the
+  README asserting something untrue.
+- `test_spawn_poses_face_along_the_track` — if the robustness harness spawned
+  cars facing across the track, every champion would score 0% and the finding
+  would read as "nothing generalises" when the truth is "the harness is broken".
 
 ## Build log
 
@@ -163,3 +216,9 @@ venv\Scripts\python.exe -m pytest
 3. [Generation one cheats](docs/devlog/03-generation-one-cheats.md)
 4. [Watching it learn](docs/devlog/04-watching-it-learn.md)
 5. [One of them learned to drive. The other memorised a track.](docs/devlog/05-it-memorised-the-track.md)
+6. [A prediction, written down first](docs/devlog/06-prediction.md)
+7. [The held-out test, and the prediction it broke](docs/devlog/07-the-held-out-test.md)
+
+## License
+
+MIT — see [LICENSE](LICENSE).

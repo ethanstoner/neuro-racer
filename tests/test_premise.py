@@ -12,6 +12,7 @@ import numpy as np
 import pytest
 from config import Config
 from src.physics import CarState, step
+from src.track import min_centerline_radius
 from src.tracks import BUILDERS, load
 
 CFG = Config()
@@ -46,13 +47,7 @@ def measured_turn_radius(speed: float, cfg: Config = CFG) -> float:
 
 def min_corner_radius(name: str, cfg: Config = CFG) -> float:
     """Tightest radius of curvature anywhere on a track's centerline."""
-    c = load(name, cfg).centerline
-    d1 = np.gradient(c, axis=0)
-    d2 = np.gradient(d1, axis=0)
-    num = np.abs(d1[:, 0] * d2[:, 1] - d1[:, 1] * d2[:, 0])
-    den = (d1[:, 0] ** 2 + d1[:, 1] ** 2) ** 1.5
-    curvature = num / np.maximum(den, 1e-12)
-    return float(1.0 / np.maximum(curvature.max(), 1e-12))
+    return min_centerline_radius(load(name, cfg).centerline)
 
 
 def test_turn_radius_grows_with_speed():

@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 from config import Config
-from src.track import Track, circle_centerline
+from src.track import Track, circle_centerline, self_approach_distance
 from src.tracks import BUILDERS, load
 
 
@@ -90,19 +90,10 @@ def test_track_does_not_self_intersect(name):
     """
     cfg = Config()
     c = load(name, cfg).centerline
-    seg = np.linalg.norm(np.diff(np.vstack([c, c[:1]]), axis=0), axis=1)
-    total = seg.sum()
-    s = np.concatenate([[0.0], np.cumsum(seg)])[:len(c)]
-
-    euclid = np.linalg.norm(c[:, None, :] - c[None, :, :], axis=2)
-    arc = np.abs(s[:, None] - s[None, :])
-    arc = np.minimum(arc, total - arc)          # circular distance along the lap
-
-    distant = arc > cfg.track_width * 1.5
-    assert distant.any()
-    assert euclid[distant].min() > cfg.track_width, (
+    closest = self_approach_distance(c, cfg.track_width)
+    assert closest > cfg.track_width, (
         f"{name} folds back on itself: closest distant approach is "
-        f"{euclid[distant].min():.1f}px, needs > {cfg.track_width}px")
+        f"{closest:.1f}px, needs > {cfg.track_width}px")
 
 
 @pytest.mark.parametrize("name", sorted(BUILDERS))

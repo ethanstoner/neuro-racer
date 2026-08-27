@@ -1,0 +1,93 @@
+{
+  "oval": [
+    {
+      "radius": 173.46822390826856,
+      "rate": 0.10416666666666667,
+      "passed": false
+    }
+  ],
+  "chicane": [
+    {
+      "radius": 173.46822390826856,
+      "rate": 1.0,
+      "passed": true
+    },
+    {
+      "radius": 130.7029609649596,
+      "rate": 1.0,
+      "passed": true
+    },
+    {
+      "radius": 106.21350531317417,
+      "rate": 0.041666666666666664,
+      "passed": false
+    }
+  ],
+  "snake": [
+    {
+      "radius": 173.46822390826856,
+      "rate": 1.0,
+      "passed": true
+    },
+    {
+      "radius": 130.7029609649596,
+      "rate": 1.0,
+      "passed": true
+    },
+    {
+      "radius": 106.21350531317417,
+      "rate": 1.0,
+      "passed": true
+    },
+    {
+      "radius": 90.1318227812949,
+      "rate": 1.0,
+      "passed": true
+    },
+    {
+      "radius": 79.01840017041452,
+      "rate": 1.0,
+      "passed": true
+    },
+    {
+      "radius": 70.62904590768902,
+      "rate": 1.0,
+      "passed": true
+    },
+    {
+      "radius": 64.78945288482224,
+      "rate": 1.0,
+      "passed": true
+    },
+    {
+      "radius": 60.275356184421135,
+      "rate": 1.0,
+      "passed": true
+    },
+    {
+      "radius": 56.686716154835494,
+      "rate": 1.0,
+      "passed": true
+    },
+    {
+      "radius": 56.08305989894322,
+      "rate": 1.0,
+      "passed": true
+    },
+    {
+      "radius": 52.48856725743341,
+      "rate": 1.0,
+      "passed": true
+    },
+    {
+      "radius": 51.434529536069014,
+      "rate": 1.0,
+      "passed": true
+    },
+    {
+      "radius": 46.404060259241696,
+      "rate": 0.0,
+      "passed": false
+    }
+  ]
+}
