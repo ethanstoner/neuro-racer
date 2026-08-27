@@ -1,5 +1,6 @@
 import subprocess
 import sys
+from pathlib import Path
 import numpy as np
 from config import Config
 from src.tracks import load
@@ -7,15 +8,26 @@ from src.net import random_population
 from src.simulation import run_generation
 
 CFG = Config(population=20, max_episode_seconds=6.0)
+ROOT = Path(__file__).resolve().parent.parent
 
 
 def test_simulation_never_imports_pygame():
     """Training must stay headless. If pygame creeps into the simulation path
     the whole fast-forward design is compromised, so this is checked in a fresh
-    interpreter rather than relying on import order in this one."""
+    interpreter rather than relying on import order in this one.
+
+    cwd=ROOT because the subprocess does not inherit pytest's sys.path. Without
+    it this passed only when pytest happened to be invoked from the repo root,
+    and anywhere else the probe died on ModuleNotFoundError and returned 1 --
+    reporting "pygame was imported" when the truth was "src was not found".
+    """
     code = ("import sys; import src.simulation; "
             "sys.exit(1 if 'pygame' in sys.modules else 0)")
-    assert subprocess.run([sys.executable, "-c", code]).returncode == 0
+    probe = subprocess.run([sys.executable, "-c", code], cwd=ROOT,
+                           capture_output=True, text=True)
+    # Separated so the two failures can never be mistaken for each other again.
+    assert not probe.stderr, f"the probe could not run at all:\n{probe.stderr}"
+    assert probe.returncode == 0, "importing src.simulation pulled in pygame"
 
 
 def test_run_generation_returns_one_score_per_genome():
