@@ -10,9 +10,15 @@ live beside the track as the generations improve.
 No PyTorch, no gradients. A population of 100 tiny neural networks — 99 weights
 each — is scored on a lap, the worst are discarded, the best are bred and
 mutated, repeat. Everything runs in one pygame window at 60fps, or headless at
-about 2.5 generations per second.
+about 3 generations per second.
 
-![the app](docs/devlog/img/app-oval-gen45.png)
+![80 generations of learning to drive](docs/devlog/img/learning.gif)
+
+*80 generations on `snake`, unedited. Generation 0 puts 7 of 100 cars through a
+wall in the first corner; by generation 79, 83 of them are lapping and the best
+has gone from 23.70s to 9.37s. The panel on the right is the leading car's
+actual network — green weights excitatory, red inhibitory — redrawn every
+generation as it evolves.*
 
 ## Quick start
 
@@ -136,7 +142,20 @@ code anywhere in the project.
 
 **The whole population moves in lockstep.** No `for car in cars`. Positions,
 velocities and genomes are stacked arrays, and the entire population's forward
-pass is two `einsum` calls, so 100 cars costs about what 1 car costs.
+pass is two `einsum` calls. Measured cost of one simulation tick:
+
+| Population | ms / tick | µs per car-tick | vs. 1 car |
+| --- | --- | --- | --- |
+| 1 | 0.079 | 79.4 | 1.0× |
+| 10 | 0.120 | 12.0 | 1.5× |
+| 100 | 0.692 | 6.9 | 8.7× |
+| 500 | 2.940 | 5.9 | 37.0× |
+
+100 cars cost 8.7× one car rather than 100×, because per-car cost falls 11× as
+the population absorbs NumPy's fixed per-call overhead. It is not free — it is
+sub-linear, and that is the whole reason 200-generation runs finish in a couple
+of minutes. A full generation is ~0.35s at population 100, or **3.1
+generations/second** headless (`tools/bench.py`).
 
 **Sensors → network → controls.** Seven raycast distances spread ±90°, plus
 normalised speed, into 8 → 8 → 3 (throttle, brake, steer). 99 weights, kept

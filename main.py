@@ -2,7 +2,8 @@
 
   python main.py --track snake
   python main.py --track snake --population 300 --speed 4
-  python main.py --track oval --shot 12     render generation 12 to PNG and exit
+  python main.py --track oval --shot 12       render generation 12 to PNG and exit
+  python main.py --track snake --filmstrip 80 one frame per generation, for the GIF
 
 Generation N+1 is simulated on a worker thread while generation N plays back,
 so the window never stops responding. Simulation still happens strictly before
@@ -20,9 +21,13 @@ parser.add_argument("--speed", type=int, default=4, choices=[1, 4, 16],
                     help="starting playback speed; 1x is real time")
 parser.add_argument("--shot", type=int, default=None,
                     help="run headless to generation N, save a PNG, exit")
+parser.add_argument("--filmstrip", type=int, default=None,
+                    help="run N generations saving a frame from each, then exit; "
+                         "the frames the README's animation is built from")
 args = parser.parse_args()
 
-if args.shot is not None:
+HEADLESS = args.shot is not None or args.filmstrip is not None
+if HEADLESS:
     os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 import numpy as np
@@ -163,6 +168,28 @@ def compose(frames, t, leader, champion):
              best_history[-1] if best_history else 0.0, best_lap_overall,
              speed_label, paused, track.name)
 
+
+# ---------------------------------------------------------------- filmstrip
+if args.filmstrip is not None:
+    # One frame per generation from a single training run. Calling --shot in a
+    # loop would retrain from scratch for every frame, which is quadratic and
+    # produces frames from unrelated runs -- the chart would jump around.
+    outdir = "docs/devlog/img/filmstrip"
+    os.makedirs(outdir, exist_ok=True)
+    for g in range(1, args.filmstrip + 1):
+        result = run_generation(pop, track, cfg, record=True)
+        leader, champion = ingest(result)
+        frames = result.frames
+        # Midway through the episode: far enough in that the pack has spread
+        # out, early enough that a generation which crashes immediately still
+        # has something on screen.
+        compose(frames, frames.pos.shape[0] // 2, leader, champion)
+        pygame.image.save(screen, f"{outdir}/gen{g:04d}.png")
+    print(f"wrote {args.filmstrip} frames to {outdir}/  "
+          f"(best {best_history[-1]:,.0f}, laps {lap_history[-1]})")
+    recorder.close()
+    pygame.quit()
+    raise SystemExit
 
 # ---------------------------------------------------------------- screenshot
 if args.shot is not None:
