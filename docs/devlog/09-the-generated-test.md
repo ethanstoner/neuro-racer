@@ -101,6 +101,11 @@ answer the question, but I haven't run that split yet.
   reports train against held-out lap rates.
 - `test_heldout.py` now pins the direction result, so it can't be quietly
   fixed away or forgotten.
+- Found while building the file format: `min_centerline_radius` is noisy.
+  Rounding a 250px circle's points to 0.01px moves its reading from 247.7px to
+  240.1px, because it takes the maximum of second differences. Track files are
+  now measured on exactly the rounded points they contain. Floors quoted to the
+  pixel (51px, 131px) are good to a few percent, not to the pixel.
 
 The obvious next experiment is to train on both directions of the same track
 and see whether the snake result is a property of the training data or of the

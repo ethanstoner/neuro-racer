@@ -117,8 +117,13 @@ def load_file(path, cfg: Config) -> Track:
 
 def save_file(path, name: str, centerline: np.ndarray, cfg: Config, source: str = "neuro-racer",
               extra: dict | None = None) -> dict:
-    """Write a centerline in the shared format, with its measurements alongside."""
-    pts = np.asarray(centerline, dtype=np.float64)
+    """Write a centerline in the shared format, with its measurements alongside.
+
+    Measured after rounding to the 0.01px that goes on disk: the tightest-corner
+    estimate moves by about a pixel under that rounding, and the file's numbers
+    must be the ones a reader of the file gets.
+    """
+    pts = np.round(np.asarray(centerline, dtype=np.float64), 2)
     r = check(pts, cfg)
     data = {
         "format": FORMAT,
@@ -126,7 +131,7 @@ def save_file(path, name: str, centerline: np.ndarray, cfg: Config, source: str 
         "name": name,
         "world": [cfg.width, cfg.height],
         "track_width": cfg.track_width,
-        "centerline": [[round(float(x), 2), round(float(y), 2)] for x, y in pts],
+        "centerline": [[float(x), float(y)] for x, y in pts],
         "metrics": {
             "tightest_radius": round(r.tightest_radius, 2),
             "self_approach": round(r.self_approach, 2),

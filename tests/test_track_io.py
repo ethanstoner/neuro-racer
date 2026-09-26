@@ -69,10 +69,22 @@ def test_track_outside_the_arena_is_refused(tmp_path):
         load_file(_write(tmp_path, centerline=big), CFG)
 
 
+def test_saved_metrics_describe_the_saved_points(tmp_path):
+    """The file's numbers are what a reader of the file will measure."""
+    path = tmp_path / "gen.track.json"
+    from src.procgen import generate
+    g = generate(3, 7, CFG)[2]
+    data = save_file(path, g.name, g.centerline, CFG)
+    again = check(np.asarray(read(path)["centerline"]), CFG)
+    for key, value in data["metrics"].items():
+        assert getattr(again, key) == pytest.approx(value, abs=0.01), key
+
+
 def test_save_then_load_round_trips(tmp_path):
     ring = circle_centerline(600, 400, 250)
     data = save_file(tmp_path / "ring.track.json", "ring", ring, CFG)
-    assert data["metrics"]["tightest_radius"] == pytest.approx(247.67, abs=0.01)
+    # 247.67 on the exact circle; the 0.01px rounding on disk costs ~8px of radius
+    assert data["metrics"]["tightest_radius"] == pytest.approx(240.05, abs=0.01)
     t = load_file(tmp_path / "ring.track.json", CFG)
     assert t.name == "ring"
     assert t.length == pytest.approx(data["metrics"]["length"], abs=0.01)
