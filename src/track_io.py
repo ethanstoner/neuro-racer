@@ -5,7 +5,7 @@ it was drawn for, and a `centerline` in driving order. The car starts at
 centerline[0] heading towards centerline[1], exactly as for the built-in tracks.
 
 Loading refuses anything the trainer could not use honestly -- a track that
-overlaps itself, leaves the arena, or has a corner no speed can get round -- with
+overlaps itself, leaves the arena, or has a corner too tight to measure -- with
 the same three rules the editor checks live, so a file that exported cleanly
 always loads, and a hand-edited one that breaks a rule says which.
 """
@@ -20,8 +20,10 @@ from src.track import (Track, _resample_closed, min_centerline_radius,
 FORMAT = "neuroracer-track"
 VERSION = 1
 
-# Below this no speed gets a car round (tools/probe_tracks.py found genuine
-# hairpins pinching under 35px were undriveable rather than hard).
+# Below this the centerline radius stops describing the corner a car drives:
+# champions lap 12px centerline corners by taking a far wider line (devlog 15).
+# Kept at 40 because procgen's held-out sets depend on it, not because tighter
+# tracks can't be driven.
 MIN_RADIUS = 40.0
 
 
@@ -76,7 +78,7 @@ def check(points: np.ndarray, cfg: Config) -> TrackCheck:
     if r.arena_margin <= 0:
         r.problems.append(f"leaves the {cfg.width}x{cfg.height} arena by {-r.arena_margin:.0f}px")
     if r.tightest_radius < MIN_RADIUS:
-        r.problems.append(f"undriveable corner: radius {r.tightest_radius:.0f}px, "
+        r.problems.append(f"corner too tight to measure: radius {r.tightest_radius:.0f}px, "
                           f"needs >= {MIN_RADIUS:.0f}px")
     return r
 

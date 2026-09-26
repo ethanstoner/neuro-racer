@@ -75,7 +75,9 @@ def _keyhole() -> np.ndarray:
     out as 186px off-centre with 0% reverse curvature and a 251px worst corner
     -- an oval in disguise, which is the one thing a held-out track must not
     be. Genuine hairpins all pinched below 35px, tighter than the car can turn
-    at any speed, so they were undriveable rather than hard.
+    at any speed, so they were undriveable rather than hard. (Devlog 15 later
+    found that centerline radius alone doesn't decide this: champions lap 12px
+    centerline corners where the road leaves room for a wider line.)
     """
     t = _T
     r_out = 330 - 60 * np.cos(2 * t)

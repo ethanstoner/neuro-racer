@@ -1148,5 +1148,465 @@
    "tight_clockwise": 0,
    "n_tight_clockwise": 7
   }
+ },
+ {
+  "condition": "random-start",
+  "seed": 1,
+  "snake_forward": 0.9861111111111112,
+  "snake_reverse": 0.0,
+  "builtins": {
+   "chicane": {
+    "forward": 0.0,
+    "reverse": 0.0
+   },
+   "clover": {
+    "forward": 0.041666666666666664,
+    "reverse": 0.0
+   },
+   "keyhole": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "oval": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "peanut": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "ripple": {
+    "forward": 0.0,
+    "reverse": 0.0
+   },
+   "snake": {
+    "forward": 0.9861111111111112,
+    "reverse": 0.0
+   }
+  },
+  "generated": {
+   "clockwise": 36,
+   "counter_clockwise": 0,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50,
+   "tight": 0,
+   "n_tight": 13,
+   "tight_clockwise": 0,
+   "n_tight_clockwise": 7
+  }
+ },
+ {
+  "condition": "random-start",
+  "seed": 2,
+  "snake_forward": 1.0,
+  "snake_reverse": 0.0,
+  "builtins": {
+   "chicane": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "clover": {
+    "forward": 0.9861111111111112,
+    "reverse": 0.0
+   },
+   "keyhole": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "oval": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "peanut": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "ripple": {
+    "forward": 0.9722222222222222,
+    "reverse": 0.0
+   },
+   "snake": {
+    "forward": 1.0,
+    "reverse": 0.0
+   }
+  },
+  "generated": {
+   "clockwise": 49,
+   "counter_clockwise": 1,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50,
+   "tight": 6,
+   "n_tight": 13,
+   "tight_clockwise": 6,
+   "n_tight_clockwise": 7
+  }
+ },
+ {
+  "condition": "random-start",
+  "seed": 3,
+  "snake_forward": 1.0,
+  "snake_reverse": 0.0,
+  "builtins": {
+   "chicane": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "clover": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "keyhole": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "oval": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "peanut": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "ripple": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "snake": {
+    "forward": 1.0,
+    "reverse": 0.0
+   }
+  },
+  "generated": {
+   "clockwise": 49,
+   "counter_clockwise": 0,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50,
+   "tight": 6,
+   "n_tight": 13,
+   "tight_clockwise": 6,
+   "n_tight_clockwise": 7
+  }
+ },
+ {
+  "condition": "random-start",
+  "seed": 4,
+  "snake_forward": 1.0,
+  "snake_reverse": 0.0,
+  "builtins": {
+   "chicane": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "clover": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "keyhole": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "oval": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "peanut": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "ripple": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "snake": {
+    "forward": 1.0,
+    "reverse": 0.0
+   }
+  },
+  "generated": {
+   "clockwise": 39,
+   "counter_clockwise": 0,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50,
+   "tight": 1,
+   "n_tight": 13,
+   "tight_clockwise": 1,
+   "n_tight_clockwise": 7
+  }
+ },
+ {
+  "condition": "random-start",
+  "seed": 5,
+  "snake_forward": 0.9722222222222222,
+  "snake_reverse": 0.0,
+  "builtins": {
+   "chicane": {
+    "forward": 0.0,
+    "reverse": 0.0
+   },
+   "clover": {
+    "forward": 0.0,
+    "reverse": 0.0
+   },
+   "keyhole": {
+    "forward": 1.0,
+    "reverse": 0.041666666666666664
+   },
+   "oval": {
+    "forward": 1.0,
+    "reverse": 0.9444444444444444
+   },
+   "peanut": {
+    "forward": 0.0,
+    "reverse": 0.0
+   },
+   "ripple": {
+    "forward": 0.0,
+    "reverse": 0.0
+   },
+   "snake": {
+    "forward": 0.9722222222222222,
+    "reverse": 0.0
+   }
+  },
+  "generated": {
+   "clockwise": 0,
+   "counter_clockwise": 9,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50,
+   "tight": 0,
+   "n_tight": 13,
+   "tight_clockwise": 0,
+   "n_tight_clockwise": 7
+  }
+ },
+ {
+  "condition": "random-start-400",
+  "seed": 1,
+  "snake_forward": 1.0,
+  "snake_reverse": 0.7083333333333334,
+  "builtins": {
+   "chicane": {
+    "forward": 0.9722222222222222,
+    "reverse": 1.0
+   },
+   "clover": {
+    "forward": 0.9861111111111112,
+    "reverse": 0.8472222222222222
+   },
+   "keyhole": {
+    "forward": 0.9583333333333334,
+    "reverse": 0.9583333333333334
+   },
+   "oval": {
+    "forward": 0.9861111111111112,
+    "reverse": 1.0
+   },
+   "peanut": {
+    "forward": 1.0,
+    "reverse": 0.9722222222222222
+   },
+   "ripple": {
+    "forward": 0.9583333333333334,
+    "reverse": 0.0
+   },
+   "snake": {
+    "forward": 1.0,
+    "reverse": 0.7083333333333334
+   }
+  },
+  "generated": {
+   "clockwise": 50,
+   "counter_clockwise": 41,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50,
+   "tight": 10,
+   "n_tight": 13,
+   "tight_clockwise": 7,
+   "n_tight_clockwise": 7
+  }
+ },
+ {
+  "condition": "random-start-400",
+  "seed": 2,
+  "snake_forward": 0.9861111111111112,
+  "snake_reverse": 0.0,
+  "builtins": {
+   "chicane": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "clover": {
+    "forward": 0.9583333333333334,
+    "reverse": 0.7916666666666666
+   },
+   "keyhole": {
+    "forward": 0.9722222222222222,
+    "reverse": 0.9166666666666666
+   },
+   "oval": {
+    "forward": 0.9722222222222222,
+    "reverse": 0.9861111111111112
+   },
+   "peanut": {
+    "forward": 0.9583333333333334,
+    "reverse": 0.9444444444444444
+   },
+   "ripple": {
+    "forward": 0.9166666666666666,
+    "reverse": 0.0
+   },
+   "snake": {
+    "forward": 0.9861111111111112,
+    "reverse": 0.0
+   }
+  },
+  "generated": {
+   "clockwise": 48,
+   "counter_clockwise": 32,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50,
+   "tight": 5,
+   "n_tight": 13,
+   "tight_clockwise": 5,
+   "n_tight_clockwise": 7
+  }
+ },
+ {
+  "condition": "random-start-400",
+  "seed": 3,
+  "snake_forward": 1.0,
+  "snake_reverse": 0.0,
+  "builtins": {
+   "chicane": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "clover": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "keyhole": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "oval": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "peanut": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "ripple": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "snake": {
+    "forward": 1.0,
+    "reverse": 0.0
+   }
+  },
+  "generated": {
+   "clockwise": 50,
+   "counter_clockwise": 0,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50,
+   "tight": 7,
+   "n_tight": 13,
+   "tight_clockwise": 7,
+   "n_tight_clockwise": 7
+  }
+ },
+ {
+  "condition": "random-start-400",
+  "seed": 4,
+  "snake_forward": 1.0,
+  "snake_reverse": 0.0,
+  "builtins": {
+   "chicane": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "clover": {
+    "forward": 0.18055555555555555,
+    "reverse": 0.0
+   },
+   "keyhole": {
+    "forward": 1.0,
+    "reverse": 0.09722222222222222
+   },
+   "oval": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "peanut": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "ripple": {
+    "forward": 0.013888888888888888,
+    "reverse": 0.0
+   },
+   "snake": {
+    "forward": 1.0,
+    "reverse": 0.0
+   }
+  },
+  "generated": {
+   "clockwise": 36,
+   "counter_clockwise": 7,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50,
+   "tight": 1,
+   "n_tight": 13,
+   "tight_clockwise": 1,
+   "n_tight_clockwise": 7
+  }
+ },
+ {
+  "condition": "random-start-400",
+  "seed": 5,
+  "snake_forward": 0.9583333333333334,
+  "snake_reverse": 0.0,
+  "builtins": {
+   "chicane": {
+    "forward": 0.0,
+    "reverse": 0.013888888888888888
+   },
+   "clover": {
+    "forward": 0.0,
+    "reverse": 0.0
+   },
+   "keyhole": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "oval": {
+    "forward": 1.0,
+    "reverse": 0.9027777777777778
+   },
+   "peanut": {
+    "forward": 0.0,
+    "reverse": 0.0
+   },
+   "ripple": {
+    "forward": 0.0,
+    "reverse": 0.0
+   },
+   "snake": {
+    "forward": 0.9583333333333334,
+    "reverse": 0.0
+   }
+  },
+  "generated": {
+   "clockwise": 1,
+   "counter_clockwise": 6,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50,
+   "tight": 0,
+   "n_tight": 13,
+   "tight_clockwise": 0,
+   "n_tight_clockwise": 7
+  }
  }
 ]

@@ -90,6 +90,8 @@ def main():
     p.add_argument("--offsets", type=int, default=3)
     p.add_argument("--workers", type=int, default=min(30, os.cpu_count() or 1))
     p.add_argument("--json", default=None)
+    p.add_argument("--merge", action="store_true",
+                   help="replace these conditions' rows in --json and keep the rest")
     a = p.parse_args()
 
     from config import Config
@@ -117,8 +119,13 @@ def main():
         print(f"{res['condition']:17} {res['seed']:4d}  {f:>7}  {per}")
 
     if a.json:
-        Path(a.json).parent.mkdir(parents=True, exist_ok=True)
-        Path(a.json).write_text(json.dumps(results, indent=1), encoding="utf-8")
+        out = Path(a.json)
+        if a.merge and out.exists():
+            kept = [r for r in json.loads(out.read_text(encoding="utf-8"))
+                    if r["condition"] not in a.conditions]
+            results = kept + results
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(results, indent=1), encoding="utf-8")
         print(f"wrote {a.json}")
 
 
