@@ -70,3 +70,11 @@ def test_the_snake_champion_only_drives_one_way_round(champions):
 def test_the_chicane_champion_survives_reversal(champions):
     """The contrast that makes the snake result about snake, not the harness."""
     assert reversed_rate(champions["chicane"], "chicane") > 0.8
+
+
+def test_training_both_ways_round_fixes_it():
+    """Same seed, same budget in generations, snake driven both ways every
+    generation: the champion laps both directions (devlog 11)."""
+    both = RunRecorder.load_champion(CHAMPIONS / "snake-both")
+    assert rate(both, "snake") > 0.9
+    assert reversed_rate(both, "snake") > 0.9

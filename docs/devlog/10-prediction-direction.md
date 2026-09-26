@@ -54,4 +54,4 @@ other direction too.
   by learning a direction-free policy.
 - 5 fails: generality has a measurable price in one-way skill.
 
-Result: to follow in 11. This file is committed before any of the 15 runs.
+Result: [11-both-ways-round.md](11-both-ways-round.md). This file was committed (8f2f845) before any of the 15 runs.

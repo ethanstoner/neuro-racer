@@ -39,7 +39,14 @@ r = run_generation(genome, track, cfg, record=True)
 traj = r.frames.pos[:, 0]
 speeds = np.linalg.norm(np.diff(traj, axis=0), axis=1) / cfg.dt
 
-trained_on = entry.get("track", "?")
+trained_on = slug(entry.get("track", "?"))
+run_config = os.path.join(args.run, "config.json")
+if os.path.exists(run_config):
+    import json
+    direction = json.load(open(run_config, encoding="utf-8")).get("direction", "forward")
+    if direction != "forward":
+        # a both-ways champion must not overwrite the forward one's images
+        trained_on += f"-{direction}"
 print(f"champion gen {entry['generation']} (trained on {trained_on})  ->  {track_name}")
 print(f"  survived   : {r.ticks_run * cfg.dt:.2f}s of {cfg.max_episode_seconds:.0f}s max")
 print(f"  finished   : {'yes' if r.laps[0] > 0 else 'NO'}")

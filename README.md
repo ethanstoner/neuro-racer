@@ -159,11 +159,35 @@ the floor. Full write-up:
 
 ![snake champion on its own track, reversed](docs/devlog/img/eval-snake199-on-snake-reversed.png)
 
+### So I trained it both ways round
+
+Five seeds each of forward-only, reverse-only, and both-ways training (every
+car drives snake in both directions each generation, ranked by the mean). The
+prediction was committed first
+([docs/devlog/10-prediction-direction.md](docs/devlog/10-prediction-direction.md)).
+
+| Training | learned its track | also drives the other way | generated tracks lapped (median of 5) |
+| --- | --- | --- | --- |
+| forward only | 4 of 5 | 2 of those 4 | 48 / 100 |
+| reverse only | 5 of 5 | 1 of those 5 | 49 / 100 |
+| **both ways** | **5 of 5** | **5 of 5** | **100 / 100** |
+
+The published champion (seed 1) was the extreme case: one-way training leaves
+it to chance whether the policy transfers. Both-ways training made every seed
+direction-free. It also lapped every generated track, including 13 with corners
+tighter than the one-way floor, down to 40.6px. It had twice the simulation per
+generation, though, so whether that corner gain is direction variety or just
+more training is still open. Full write-up:
+[docs/devlog/11-both-ways-round.md](docs/devlog/11-both-ways-round.md).
+
+![both-ways champion on reversed snake](docs/devlog/img/eval-snake-both199-on-snake-reversed.png)
+
 The champions are committed under `champions/`, so none of this has to be taken
 on trust:
 
 ```bash
 venv\Scripts\python.exe generalise.py              # train vs 100 generated tracks
+venv\Scripts\python.exe direction.py               # forward / reverse / both-ways runs
 venv\Scripts\python.exe heldout.py                 # the held-out table
 venv\Scripts\python.exe tools/corner_sweep.py      # the floors
 venv\Scripts\python.exe robustness.py --run champions/snake --all-tracks
@@ -226,6 +250,7 @@ preview_track.py     rasterise a track to PNG
 robustness.py        policy, or one memorised trajectory?
 heldout.py           every champion vs. the four unseen tracks
 generalise.py        every champion vs. a seeded set of generated tracks
+direction.py         one-way vs. both-ways champions, scored in both directions
 
 src/                 library -- imported, never executed
   track.py           centerline + width -> the three masks, corner geometry
@@ -252,9 +277,10 @@ tools/               instrumentation, not part of the project's own workings
   reproduce_wall_hug.py the generation-1 exploit, on demand
   export_champions.py  promote a run into champions/
 
-tracks/              track files (snake reversed, for devlog 09)
-champions/           the three trained champions, committed so the published
-                     numbers can be re-measured rather than trusted
+tracks/              track files used by the devlog images
+champions/           the three trained champions plus snake-both (devlog 11),
+                     committed so the published numbers can be re-measured
+                     rather than trusted
 tests/               all headless, so they run in CI
 docs/devlog/         build log, written as the thing was built
 ```
@@ -288,6 +314,8 @@ All headless, so they run in CI. The ones worth knowing about:
   README asserting something untrue.
 - `test_the_snake_champion_only_drives_one_way_round` — pins devlog 09, with
   the chicane champion surviving reversal as the control.
+- `test_training_both_ways_round_fixes_it` — the both-ways champion laps snake
+  in both directions (devlog 11).
 - `test_editor_measurements_match_numpy` — the editor's live checks are a
   TypeScript port; this compares them against the numpy originals on a file
   exported from the editor's UI, to 0.01px.
@@ -307,6 +335,7 @@ All headless, so they run in CI. The ones worth knowing about:
 8. [A prediction for 100 tracks nobody drew](docs/devlog/08-prediction-generated.md)
 9. [100 tracks nobody drew, and the direction nobody tested](docs/devlog/09-the-generated-test.md)
 10. [Prediction: is the one-way bias in the data or the network?](docs/devlog/10-prediction-direction.md)
+11. [Both ways round](docs/devlog/11-both-ways-round.md)
 
 ## License
 

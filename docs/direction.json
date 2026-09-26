@@ -1,0 +1,632 @@
+[
+ {
+  "condition": "forward",
+  "seed": 1,
+  "snake_forward": 1.0,
+  "snake_reverse": 0.0,
+  "builtins": {
+   "chicane": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "clover": {
+    "forward": 0.9861111111111112,
+    "reverse": 0.0
+   },
+   "keyhole": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "oval": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "peanut": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "ripple": {
+    "forward": 0.9722222222222222,
+    "reverse": 0.0
+   },
+   "snake": {
+    "forward": 1.0,
+    "reverse": 0.0
+   }
+  },
+  "generated": {
+   "clockwise": 48,
+   "counter_clockwise": 0,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50
+  }
+ },
+ {
+  "condition": "forward",
+  "seed": 2,
+  "snake_forward": 1.0,
+  "snake_reverse": 0.6666666666666666,
+  "builtins": {
+   "chicane": {
+    "forward": 1.0,
+    "reverse": 0.8472222222222222
+   },
+   "clover": {
+    "forward": 0.9722222222222222,
+    "reverse": 0.875
+   },
+   "keyhole": {
+    "forward": 1.0,
+    "reverse": 0.8888888888888888
+   },
+   "oval": {
+    "forward": 1.0,
+    "reverse": 0.9166666666666666
+   },
+   "peanut": {
+    "forward": 1.0,
+    "reverse": 0.9166666666666666
+   },
+   "ripple": {
+    "forward": 0.9444444444444444,
+    "reverse": 0.6527777777777778
+   },
+   "snake": {
+    "forward": 1.0,
+    "reverse": 0.6666666666666666
+   }
+  },
+  "generated": {
+   "clockwise": 49,
+   "counter_clockwise": 34,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50
+  }
+ },
+ {
+  "condition": "forward",
+  "seed": 3,
+  "snake_forward": 0.375,
+  "snake_reverse": 0.0,
+  "builtins": {
+   "chicane": {
+    "forward": 0.0,
+    "reverse": 0.0
+   },
+   "clover": {
+    "forward": 0.0,
+    "reverse": 0.0
+   },
+   "keyhole": {
+    "forward": 0.18055555555555555,
+    "reverse": 0.0
+   },
+   "oval": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "peanut": {
+    "forward": 0.0,
+    "reverse": 0.0
+   },
+   "ripple": {
+    "forward": 0.0,
+    "reverse": 0.0
+   },
+   "snake": {
+    "forward": 0.375,
+    "reverse": 0.0
+   }
+  },
+  "generated": {
+   "clockwise": 0,
+   "counter_clockwise": 7,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50
+  }
+ },
+ {
+  "condition": "forward",
+  "seed": 4,
+  "snake_forward": 1.0,
+  "snake_reverse": 0.8611111111111112,
+  "builtins": {
+   "chicane": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "clover": {
+    "forward": 0.3055555555555556,
+    "reverse": 0.6388888888888888
+   },
+   "keyhole": {
+    "forward": 1.0,
+    "reverse": 0.2361111111111111
+   },
+   "oval": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "peanut": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "ripple": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "snake": {
+    "forward": 1.0,
+    "reverse": 0.8611111111111112
+   }
+  },
+  "generated": {
+   "clockwise": 42,
+   "counter_clockwise": 21,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50
+  }
+ },
+ {
+  "condition": "forward",
+  "seed": 5,
+  "snake_forward": 1.0,
+  "snake_reverse": 0.0,
+  "builtins": {
+   "chicane": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "clover": {
+    "forward": 0.2222222222222222,
+    "reverse": 0.013888888888888888
+   },
+   "keyhole": {
+    "forward": 1.0,
+    "reverse": 0.19444444444444445
+   },
+   "oval": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "peanut": {
+    "forward": 1.0,
+    "reverse": 0.9444444444444444
+   },
+   "ripple": {
+    "forward": 0.1388888888888889,
+    "reverse": 0.0
+   },
+   "snake": {
+    "forward": 1.0,
+    "reverse": 0.0
+   }
+  },
+  "generated": {
+   "clockwise": 36,
+   "counter_clockwise": 5,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50
+  }
+ },
+ {
+  "condition": "reverse",
+  "seed": 1,
+  "snake_forward": 0.9583333333333334,
+  "snake_reverse": 1.0,
+  "builtins": {
+   "chicane": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "clover": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "keyhole": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "oval": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "peanut": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "ripple": {
+    "forward": 0.9722222222222222,
+    "reverse": 1.0
+   },
+   "snake": {
+    "forward": 0.9583333333333334,
+    "reverse": 1.0
+   }
+  },
+  "generated": {
+   "clockwise": 46,
+   "counter_clockwise": 50,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50
+  }
+ },
+ {
+  "condition": "reverse",
+  "seed": 2,
+  "snake_forward": 0.0,
+  "snake_reverse": 0.9722222222222222,
+  "builtins": {
+   "chicane": {
+    "forward": 1.0,
+    "reverse": 0.9861111111111112
+   },
+   "clover": {
+    "forward": 0.4027777777777778,
+    "reverse": 0.9305555555555556
+   },
+   "keyhole": {
+    "forward": 0.875,
+    "reverse": 0.9861111111111112
+   },
+   "oval": {
+    "forward": 0.9722222222222222,
+    "reverse": 0.9722222222222222
+   },
+   "peanut": {
+    "forward": 0.9027777777777778,
+    "reverse": 0.9444444444444444
+   },
+   "ripple": {
+    "forward": 0.0,
+    "reverse": 0.8611111111111112
+   },
+   "snake": {
+    "forward": 0.0,
+    "reverse": 0.9722222222222222
+   }
+  },
+  "generated": {
+   "clockwise": 27,
+   "counter_clockwise": 50,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50
+  }
+ },
+ {
+  "condition": "reverse",
+  "seed": 3,
+  "snake_forward": 0.0,
+  "snake_reverse": 1.0,
+  "builtins": {
+   "chicane": {
+    "forward": 0.0,
+    "reverse": 0.0
+   },
+   "clover": {
+    "forward": 0.0,
+    "reverse": 0.0
+   },
+   "keyhole": {
+    "forward": 0.16666666666666666,
+    "reverse": 0.0
+   },
+   "oval": {
+    "forward": 1.0,
+    "reverse": 0.0
+   },
+   "peanut": {
+    "forward": 0.0,
+    "reverse": 0.0
+   },
+   "ripple": {
+    "forward": 0.0,
+    "reverse": 0.0
+   },
+   "snake": {
+    "forward": 0.0,
+    "reverse": 1.0
+   }
+  },
+  "generated": {
+   "clockwise": 8,
+   "counter_clockwise": 0,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50
+  }
+ },
+ {
+  "condition": "reverse",
+  "seed": 4,
+  "snake_forward": 0.0,
+  "snake_reverse": 1.0,
+  "builtins": {
+   "chicane": {
+    "forward": 0.0,
+    "reverse": 1.0
+   },
+   "clover": {
+    "forward": 0.0,
+    "reverse": 0.9861111111111112
+   },
+   "keyhole": {
+    "forward": 0.0,
+    "reverse": 1.0
+   },
+   "oval": {
+    "forward": 0.0,
+    "reverse": 1.0
+   },
+   "peanut": {
+    "forward": 0.0,
+    "reverse": 1.0
+   },
+   "ripple": {
+    "forward": 0.0,
+    "reverse": 0.9861111111111112
+   },
+   "snake": {
+    "forward": 0.0,
+    "reverse": 1.0
+   }
+  },
+  "generated": {
+   "clockwise": 0,
+   "counter_clockwise": 46,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50
+  }
+ },
+ {
+  "condition": "reverse",
+  "seed": 5,
+  "snake_forward": 0.0,
+  "snake_reverse": 1.0,
+  "builtins": {
+   "chicane": {
+    "forward": 0.9166666666666666,
+    "reverse": 1.0
+   },
+   "clover": {
+    "forward": 0.2638888888888889,
+    "reverse": 0.2777777777777778
+   },
+   "keyhole": {
+    "forward": 0.16666666666666666,
+    "reverse": 1.0
+   },
+   "oval": {
+    "forward": 0.9583333333333334,
+    "reverse": 1.0
+   },
+   "peanut": {
+    "forward": 0.8888888888888888,
+    "reverse": 1.0
+   },
+   "ripple": {
+    "forward": 0.0,
+    "reverse": 0.7638888888888888
+   },
+   "snake": {
+    "forward": 0.0,
+    "reverse": 1.0
+   }
+  },
+  "generated": {
+   "clockwise": 11,
+   "counter_clockwise": 38,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50
+  }
+ },
+ {
+  "condition": "both",
+  "seed": 1,
+  "snake_forward": 1.0,
+  "snake_reverse": 1.0,
+  "builtins": {
+   "chicane": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "clover": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "keyhole": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "oval": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "peanut": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "ripple": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "snake": {
+    "forward": 1.0,
+    "reverse": 1.0
+   }
+  },
+  "generated": {
+   "clockwise": 50,
+   "counter_clockwise": 50,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50
+  }
+ },
+ {
+  "condition": "both",
+  "seed": 2,
+  "snake_forward": 1.0,
+  "snake_reverse": 1.0,
+  "builtins": {
+   "chicane": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "clover": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "keyhole": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "oval": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "peanut": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "ripple": {
+    "forward": 1.0,
+    "reverse": 0.9722222222222222
+   },
+   "snake": {
+    "forward": 1.0,
+    "reverse": 1.0
+   }
+  },
+  "generated": {
+   "clockwise": 50,
+   "counter_clockwise": 50,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50
+  }
+ },
+ {
+  "condition": "both",
+  "seed": 3,
+  "snake_forward": 1.0,
+  "snake_reverse": 1.0,
+  "builtins": {
+   "chicane": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "clover": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "keyhole": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "oval": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "peanut": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "ripple": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "snake": {
+    "forward": 1.0,
+    "reverse": 1.0
+   }
+  },
+  "generated": {
+   "clockwise": 50,
+   "counter_clockwise": 50,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50
+  }
+ },
+ {
+  "condition": "both",
+  "seed": 4,
+  "snake_forward": 1.0,
+  "snake_reverse": 1.0,
+  "builtins": {
+   "chicane": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "clover": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "keyhole": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "oval": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "peanut": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "ripple": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "snake": {
+    "forward": 1.0,
+    "reverse": 1.0
+   }
+  },
+  "generated": {
+   "clockwise": 50,
+   "counter_clockwise": 50,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50
+  }
+ },
+ {
+  "condition": "both",
+  "seed": 5,
+  "snake_forward": 1.0,
+  "snake_reverse": 1.0,
+  "builtins": {
+   "chicane": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "clover": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "keyhole": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "oval": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "peanut": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "ripple": {
+    "forward": 1.0,
+    "reverse": 1.0
+   },
+   "snake": {
+    "forward": 1.0,
+    "reverse": 1.0
+   }
+  },
+  "generated": {
+   "clockwise": 50,
+   "counter_clockwise": 50,
+   "n_clockwise": 50,
+   "n_counter_clockwise": 50
+  }
+ }
+]
