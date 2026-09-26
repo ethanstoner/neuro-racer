@@ -23,7 +23,7 @@ if args.shot:
 
 import numpy as np
 from config import Config
-from src.tracks import load
+from src.tracks import load, slug
 from src.artifacts import RunRecorder
 from src.simulation import run_generation
 
@@ -81,7 +81,7 @@ if args.shot:
     # a champion at the same generation number, and naming by generation alone
     # silently overwrites one with the other.
     out = (f"docs/devlog/img/eval-{trained_on}{entry['generation']}"
-           f"-on-{track_name}.png")
+           f"-on-{slug(track_name)}.png")
     pygame.image.save(screen, out)
     print(f"  wrote {out}")
     pygame.quit()

@@ -53,3 +53,25 @@ def test_the_chicane_champion_sits_between_the_two(champions):
     """
     assert rate(champions["chicane"], "peanut") > 0.9
     assert rate(champions["chicane"], "ripple") < 0.1
+
+
+def reversed_rate(genome, track_name):
+    """The same track, driven the other way: same start point, opposite direction."""
+    import numpy as np
+    from src.track import Track
+    from src.tracks import BUILDERS
+    pts = BUILDERS[track_name]()
+    track = Track.from_centerline(np.vstack([pts[:1], pts[:0:-1]]), CFG, name=f"{track_name}-rev")
+    return assess(genome, track, CFG, POINTS, OFFSETS)["rate"]
+
+
+def test_the_snake_champion_only_drives_one_way_round(champions):
+    """Every built-in track runs clockwise. Reversed, the champion that laps all
+    seven of them laps none -- not even its own (devlog 09)."""
+    assert rate(champions["snake"], "snake") > 0.9
+    assert reversed_rate(champions["snake"], "snake") < 0.1
+
+
+def test_the_chicane_champion_survives_reversal(champions):
+    """The contrast that makes the snake result about snake, not the harness."""
+    assert reversed_rate(champions["chicane"], "chicane") > 0.8

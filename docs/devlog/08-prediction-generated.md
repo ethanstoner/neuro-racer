@@ -40,4 +40,4 @@ floor.
 - **Misses that all lean one way** (passing tighter than the floor, or failing
   wider) mean the floor is biased on this family, not just noisy.
 
-Result: to follow in 09-the-generated-test.md. This file is committed before that run.
+Result: [09-the-generated-test.md](09-the-generated-test.md). This file was committed (e6809b2) before that run.

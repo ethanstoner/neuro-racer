@@ -29,7 +29,13 @@ venv\Scripts\python.exe -m pip install -r requirements.txt
 venv\Scripts\python.exe main.py --track snake      # watch it learn
 venv\Scripts\python.exe drive.py snake             # drive it yourself
 venv\Scripts\python.exe train.py --track snake --generations 200   # headless
+venv\Scripts\python.exe train.py --track my-track.track.json         # a track file
 ```
+
+Track files come from the companion virtual-world editor. It checks a track live
+against the same rules the loader enforces (no overlap, inside the arena, no
+corner under 40px) and exports JSON that `--track` accepts anywhere a track
+name is accepted.
 
 | Key | |
 | --- | --- |
@@ -122,10 +128,42 @@ Corner radius is not a complete measure of difficulty, and the write-up is
 explicit about where that shows
 ([docs/devlog/07-the-held-out-test.md](docs/devlog/07-the-held-out-test.md)).
 
+### Then 100 tracks nobody drew, and a direction nobody tested
+
+Seven hand-drawn tracks are still seven tracks picked by one person. So
+`src/procgen.py` generates held-out tracks from a seed, and devlog 08 wrote down
+what the corner floors predict for 100 of them before any champion ran:
+
+| Champion | floor | own track | 100 generated tracks | predicted | correct |
+| --- | --- | --- | --- | --- | --- |
+| oval | none | 6% | 0 lapped | 0 | 100% |
+| chicane | 131px | 100% | 19 lapped | 8 | 87% |
+| snake | 51px | 100% | 48 lapped | 85 | **53%** |
+
+Snake failed 42 tracks that were wider than its floor, and corners had nothing
+to do with it. The generator flips a coin for driving direction, and every
+built-in track runs clockwise. **On generated tracks above its floor, snake laps
+43 of 43 clockwise and 0 of 42 counter-clockwise.** Reversing the built-in
+tracks confirms it:
+
+| Champion | own track | own track, reversed | all 7 built-ins, reversed |
+| --- | --- | --- | --- |
+| snake | 100% | **0%** | 0% on every one |
+| chicane | 100% | 93% | laps oval 100%, peanut 94% |
+
+The champion that looked like the real generaliser only drives one way round.
+In the direction it trained in, the corner floor still holds (90% correct for
+snake), and it is conservative: the misses are laps on corners *tighter* than
+the floor. Full write-up:
+[docs/devlog/09-the-generated-test.md](docs/devlog/09-the-generated-test.md).
+
+![snake champion on its own track, reversed](docs/devlog/img/eval-snake199-on-snake-reversed.png)
+
 The champions are committed under `champions/`, so none of this has to be taken
 on trust:
 
 ```bash
+venv\Scripts\python.exe generalise.py              # train vs 100 generated tracks
 venv\Scripts\python.exe heldout.py                 # the held-out table
 venv\Scripts\python.exe tools/corner_sweep.py      # the floors
 venv\Scripts\python.exe robustness.py --run champions/snake --all-tracks
@@ -187,10 +225,13 @@ evaluate.py          replay a champion, draw its trajectory by speed
 preview_track.py     rasterise a track to PNG
 robustness.py        policy, or one memorised trajectory?
 heldout.py           every champion vs. the four unseen tracks
+generalise.py        every champion vs. a seeded set of generated tracks
 
 src/                 library -- imported, never executed
   track.py           centerline + width -> the three masks, corner geometry
-  tracks.py          3 training tracks + 4 held out
+  tracks.py          3 training tracks + 4 held out; load() also takes a file path
+  track_io.py        track files: the editor's format, and the rules it must pass
+  procgen.py         seeded star-shaped tracks for held-out sets
   physics.py         arcade step over population arrays
   sensors.py         vectorised mask-sampling raycast
   net.py             batched 8-8-3 MLP, flat genome
@@ -211,6 +252,7 @@ tools/               instrumentation, not part of the project's own workings
   reproduce_wall_hug.py the generation-1 exploit, on demand
   export_champions.py  promote a run into champions/
 
+tracks/              track files (snake reversed, for devlog 09)
 champions/           the three trained champions, committed so the published
                      numbers can be re-measured rather than trusted
 tests/               all headless, so they run in CI
@@ -244,6 +286,11 @@ All headless, so they run in CI. The ones worth knowing about:
 - `test_heldout.py` — pins the three published generalisation claims to the
   committed champions, so a physics or fitness change cannot silently leave the
   README asserting something untrue.
+- `test_the_snake_champion_only_drives_one_way_round` — pins devlog 09, with
+  the chicane champion surviving reversal as the control.
+- `test_editor_measurements_match_numpy` — the editor's live checks are a
+  TypeScript port; this compares them against the numpy originals on a file
+  exported from the editor's UI, to 0.01px.
 - `test_spawn_poses_face_along_the_track` — if the robustness harness spawned
   cars facing across the track, every champion would score 0% and the finding
   would read as "nothing generalises" when the truth is "the harness is broken".
@@ -258,6 +305,7 @@ All headless, so they run in CI. The ones worth knowing about:
 6. [A prediction, written down first](docs/devlog/06-prediction.md)
 7. [The held-out test, and the prediction it broke](docs/devlog/07-the-held-out-test.md)
 8. [A prediction for 100 tracks nobody drew](docs/devlog/08-prediction-generated.md)
+9. [100 tracks nobody drew, and the direction nobody tested](docs/devlog/09-the-generated-test.md)
 
 ## License
 

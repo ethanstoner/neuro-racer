@@ -1,0 +1,3047 @@
+{
+ "seed": 7,
+ "n": 100,
+ "floors": {
+  "oval": null,
+  "chicane": 130.7029609649596,
+  "snake": 51.434529536069014
+ },
+ "champions": {
+  "oval": {
+   "floor": null,
+   "train_rate": 0.05555555555555555,
+   "held_out_mean_rate": 0.0006944444444444445,
+   "tracks_lapped": 0,
+   "predicted_lapped": 0,
+   "correct": 100,
+   "passed_tighter_than_floor": 0,
+   "failed_wider_than_floor": 0,
+   "tracks": [
+    {
+     "track": "gen7-000",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 44.28222767093739,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-001",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 49.67335433457364,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-002",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 122.10019322214306,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-003",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 82.30338345330539,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-004",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 104.76095611059246,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-005",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 54.24803187891468,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-006",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 92.54562022681432,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-007",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 121.47062691699367,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-008",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 51.074642626488206,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-009",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 103.21570967088245,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-010",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 92.15124234437671,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-011",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 125.80074109422236,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-012",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 142.6528022357518,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-013",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 126.96226535387116,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-014",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 101.68352028298354,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-015",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 51.24343332707931,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-016",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 92.70079959598958,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-017",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 4,
+     "rate": 0.05555555555555555,
+     "best_lap": 5.433349132537842,
+     "tightest": 124.82563704955928,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-018",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 116.6579700848763,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-019",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 96.97171731936692,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-020",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 93.63779583635207,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-021",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 104.29129892393159,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-022",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 71.11662446164084,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-023",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 82.48776138215382,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-024",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 47.51842284515994,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-025",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 178.9331020034944,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-026",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 49.29737428843017,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-027",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 119.2430720477905,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-028",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 116.62879114225744,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-029",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 103.58957091879266,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-030",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 40.60062192678819,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-031",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 63.50571720793051,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-032",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 59.86026968814146,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-033",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 121.52219160856461,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-034",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 80.12834445270857,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-035",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 51.98381289791317,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-036",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 62.11430797107388,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-037",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 106.87799826807912,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-038",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 149.399877251471,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-039",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 56.9086718096443,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-040",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 99.51548991854631,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-041",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 113.55524844981794,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-042",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 133.8254974033376,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-043",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 44.23968926068824,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-044",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 64.99997821804037,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-045",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 56.25016758745225,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-046",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 64.53565516376989,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-047",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 64.87406804251476,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-048",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 99.30346049609535,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-049",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 80.13321121888862,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-050",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 60.46679389795477,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-051",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 98.8041891688871,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-052",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 64.86248450296617,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-053",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 56.665800069659326,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-054",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 80.37156817442099,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-055",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 117.4374981625444,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-056",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 51.537139802627614,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-057",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 67.8732647920033,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-058",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 80.40914959863994,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-059",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 46.574151405173964,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-060",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 75.37202782568126,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-061",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 97.36207497012249,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-062",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 61.73951058230482,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-063",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 69.93903671171086,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-064",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 152.705430704626,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-065",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 73.77910297842197,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-066",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 108.29707853365606,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-067",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 103.86756081406492,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-068",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 64.12632552151368,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-069",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 95.93929056678668,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-070",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 126.16620759543689,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-071",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 1,
+     "rate": 0.013888888888888888,
+     "best_lap": 5.933355808258057,
+     "tightest": 104.93721536639505,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-072",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 79.65225154106153,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-073",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 52.852822908854414,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-074",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 148.37898732062172,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-075",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 71.39441533196387,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-076",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 42.69196063336989,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-077",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 62.046878688846554,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-078",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 46.00315924941045,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-079",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 78.28212792275359,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-080",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 113.66676568725136,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-081",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 103.05848822885578,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-082",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 54.11062101515882,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-083",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 83.82615612613377,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-084",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 131.1686072408776,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-085",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 53.60568555400182,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-086",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 49.37898266054775,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-087",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 87.31414644732183,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-088",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 75.56393956453297,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-089",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 151.60963593940747,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-090",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 130.441983926156,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-091",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 47.76384140588589,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-092",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 101.48092261135056,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-093",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 94.87070108203271,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-094",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 75.04805502278606,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-095",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 91.23380019048314,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-096",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 41.86565594612021,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-097",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 55.16422099429324,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-098",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 42.54078151798141,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-099",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 87.18229215213408,
+     "predicted_pass": false
+    }
+   ]
+  },
+  "chicane": {
+   "floor": 130.7029609649596,
+   "train_rate": 1.0,
+   "held_out_mean_rate": 0.23055555555555554,
+   "tracks_lapped": 19,
+   "predicted_lapped": 8,
+   "correct": 87,
+   "passed_tighter_than_floor": 12,
+   "failed_wider_than_floor": 1,
+   "tracks": [
+    {
+     "track": "gen7-000",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 44.28222767093739,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-001",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 49.67335433457364,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-002",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.266706943511963,
+     "tightest": 122.10019322214306,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-003",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 82.30338345330539,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-004",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 15,
+     "rate": 0.20833333333333334,
+     "best_lap": 6.633365154266357,
+     "tightest": 104.76095611059246,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-005",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 54.24803187891468,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-006",
+     "starts": 72,
+     "survived": 3,
+     "lapped": 36,
+     "rate": 0.5,
+     "best_lap": 7.100038051605225,
+     "tightest": 92.54562022681432,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-007",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 7,
+     "rate": 0.09722222222222222,
+     "best_lap": 6.616698265075684,
+     "tightest": 121.47062691699367,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-008",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 51.074642626488206,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-009",
+     "starts": 72,
+     "survived": 71,
+     "lapped": 71,
+     "rate": 0.9861111111111112,
+     "best_lap": 6.883368492126465,
+     "tightest": 103.21570967088245,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-010",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 9,
+     "rate": 0.125,
+     "best_lap": 6.900035381317139,
+     "tightest": 92.15124234437671,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-011",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 11,
+     "rate": 0.1527777777777778,
+     "best_lap": 6.616698265075684,
+     "tightest": 125.80074109422236,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-012",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 8.31671142578125,
+     "tightest": 142.6528022357518,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-013",
+     "starts": 72,
+     "survived": 54,
+     "lapped": 68,
+     "rate": 0.9444444444444444,
+     "best_lap": 6.050024032592773,
+     "tightest": 126.96226535387116,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-014",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 9,
+     "rate": 0.125,
+     "best_lap": 6.316694259643555,
+     "tightest": 101.68352028298354,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-015",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 51.24343332707931,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-016",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 10,
+     "rate": 0.1388888888888889,
+     "best_lap": 7.566710948944092,
+     "tightest": 92.70079959598958,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-017",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 6.083357810974121,
+     "tightest": 124.82563704955928,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-018",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.483376502990723,
+     "tightest": 116.6579700848763,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-019",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 9,
+     "rate": 0.125,
+     "best_lap": 6.60003137588501,
+     "tightest": 96.97171731936692,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-020",
+     "starts": 72,
+     "survived": 2,
+     "lapped": 44,
+     "rate": 0.6111111111111112,
+     "best_lap": 7.850048065185547,
+     "tightest": 93.63779583635207,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-021",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 8,
+     "rate": 0.1111111111111111,
+     "best_lap": 8.050048828125,
+     "tightest": 104.29129892393159,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-022",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 4,
+     "rate": 0.05555555555555555,
+     "best_lap": 7.866714954376221,
+     "tightest": 71.11662446164084,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-023",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 7,
+     "rate": 0.09722222222222222,
+     "best_lap": 7.9833831787109375,
+     "tightest": 82.48776138215382,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-024",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 47.51842284515994,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-025",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 6.450029373168945,
+     "tightest": 178.9331020034944,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-026",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 49.29737428843017,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-027",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 119.2430720477905,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-028",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 116.62879114225744,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-029",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 12,
+     "rate": 0.16666666666666666,
+     "best_lap": 8.183380126953125,
+     "tightest": 103.58957091879266,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-030",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 40.60062192678819,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-031",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 63.50571720793051,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-032",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 1,
+     "rate": 0.013888888888888888,
+     "best_lap": 9.416694641113281,
+     "tightest": 59.86026968814146,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-033",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 121.52219160856461,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-034",
+     "starts": 72,
+     "survived": 60,
+     "lapped": 60,
+     "rate": 0.8333333333333334,
+     "best_lap": 8.050048828125,
+     "tightest": 80.12834445270857,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-035",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 51.98381289791317,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-036",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 62.11430797107388,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-037",
+     "starts": 72,
+     "survived": 61,
+     "lapped": 61,
+     "rate": 0.8472222222222222,
+     "best_lap": 6.766700267791748,
+     "tightest": 106.87799826807912,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-038",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.150038719177246,
+     "tightest": 149.399877251471,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-039",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 56.9086718096443,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-040",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 18,
+     "rate": 0.25,
+     "best_lap": 6.966702938079834,
+     "tightest": 99.51548991854631,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-041",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 113.55524844981794,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-042",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.316707611083984,
+     "tightest": 133.8254974033376,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-043",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 44.23968926068824,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-044",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 64.99997821804037,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-045",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 56.25016758745225,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-046",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 64.53565516376989,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-047",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 64.87406804251476,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-048",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 99.30346049609535,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-049",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 80.13321121888862,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-050",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 60.46679389795477,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-051",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 15,
+     "rate": 0.20833333333333334,
+     "best_lap": 6.866701602935791,
+     "tightest": 98.8041891688871,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-052",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 4,
+     "rate": 0.05555555555555555,
+     "best_lap": 6.933369159698486,
+     "tightest": 64.86248450296617,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-053",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 56.665800069659326,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-054",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 80.37156817442099,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-055",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 15,
+     "rate": 0.20833333333333334,
+     "best_lap": 6.183359146118164,
+     "tightest": 117.4374981625444,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-056",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 51.537139802627614,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-057",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 67.8732647920033,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-058",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 80.40914959863994,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-059",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 46.574151405173964,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-060",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 75.37202782568126,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-061",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 97.36207497012249,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-062",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 61.73951058230482,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-063",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 69.93903671171086,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-064",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.350041389465332,
+     "tightest": 152.705430704626,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-065",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 73.77910297842197,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-066",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.233373165130615,
+     "tightest": 108.29707853365606,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-067",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 11,
+     "rate": 0.1527777777777778,
+     "best_lap": 6.850034713745117,
+     "tightest": 103.86756081406492,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-068",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 64.12632552151368,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-069",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 45,
+     "rate": 0.625,
+     "best_lap": 7.183372497558594,
+     "tightest": 95.93929056678668,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-070",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 19,
+     "rate": 0.2638888888888889,
+     "best_lap": 7.16670560836792,
+     "tightest": 126.16620759543689,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-071",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 20,
+     "rate": 0.2777777777777778,
+     "best_lap": 5.9500226974487305,
+     "tightest": 104.93721536639505,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-072",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 79.65225154106153,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-073",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 52.852822908854414,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-074",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 6.516696929931641,
+     "tightest": 148.37898732062172,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-075",
+     "starts": 72,
+     "survived": 7,
+     "lapped": 34,
+     "rate": 0.4722222222222222,
+     "best_lap": 8.533374786376953,
+     "tightest": 71.39441533196387,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-076",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 5,
+     "rate": 0.06944444444444445,
+     "best_lap": 8.283378601074219,
+     "tightest": 42.69196063336989,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-077",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 62.046878688846554,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-078",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 46.00315924941045,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-079",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 78.28212792275359,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-080",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 14,
+     "rate": 0.19444444444444445,
+     "best_lap": 6.650032043457031,
+     "tightest": 113.66676568725136,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-081",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 8.600040435791016,
+     "tightest": 103.05848822885578,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-082",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 1,
+     "rate": 0.013888888888888888,
+     "best_lap": 9.083366394042969,
+     "tightest": 54.11062101515882,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-083",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 9,
+     "rate": 0.125,
+     "best_lap": 7.266706943511963,
+     "tightest": 83.82615612613377,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-084",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 16,
+     "rate": 0.2222222222222222,
+     "best_lap": 6.7333664894104,
+     "tightest": 131.1686072408776,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-085",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 53.60568555400182,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-086",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 49.37898266054775,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-087",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 87.31414644732183,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-088",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 1,
+     "rate": 0.013888888888888888,
+     "best_lap": 8.300045013427734,
+     "tightest": 75.56393956453297,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-089",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 6.550030708312988,
+     "tightest": 151.60963593940747,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-090",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 6.60003137588501,
+     "tightest": 130.441983926156,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-091",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 47.76384140588589,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-092",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 19,
+     "rate": 0.2638888888888889,
+     "best_lap": 7.366708278656006,
+     "tightest": 101.48092261135056,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-093",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 8,
+     "rate": 0.1111111111111111,
+     "best_lap": 7.583377838134766,
+     "tightest": 94.87070108203271,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-094",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 3,
+     "rate": 0.041666666666666664,
+     "best_lap": 7.750046730041504,
+     "tightest": 75.04805502278606,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-095",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 11,
+     "rate": 0.1527777777777778,
+     "best_lap": 6.9167022705078125,
+     "tightest": 91.23380019048314,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-096",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 41.86565594612021,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-097",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 6,
+     "rate": 0.08333333333333333,
+     "best_lap": 6.683365821838379,
+     "tightest": 55.16422099429324,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-098",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 42.54078151798141,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-099",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 8,
+     "rate": 0.1111111111111111,
+     "best_lap": 7.850048065185547,
+     "tightest": 87.18229215213408,
+     "predicted_pass": false
+    }
+   ]
+  },
+  "snake": {
+   "floor": 51.434529536069014,
+   "train_rate": 1.0,
+   "held_out_mean_rate": 0.5006944444444446,
+   "tracks_lapped": 48,
+   "predicted_lapped": 85,
+   "correct": 53,
+   "passed_tighter_than_floor": 5,
+   "failed_wider_than_floor": 42,
+   "tracks": [
+    {
+     "track": "gen7-000",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 44.28222767093739,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-001",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 49.67335433457364,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-002",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.316707611083984,
+     "tightest": 122.10019322214306,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-003",
+     "starts": 72,
+     "survived": 19,
+     "lapped": 19,
+     "rate": 0.2638888888888889,
+     "best_lap": 8.033382415771484,
+     "tightest": 82.30338345330539,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-004",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 104.76095611059246,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-005",
+     "starts": 72,
+     "survived": 71,
+     "lapped": 71,
+     "rate": 0.9861111111111112,
+     "best_lap": 8.683372497558594,
+     "tightest": 54.24803187891468,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-006",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 6.60003137588501,
+     "tightest": 92.54562022681432,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-007",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 9,
+     "rate": 0.125,
+     "best_lap": 6.7333664894104,
+     "tightest": 121.47062691699367,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-008",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 10,
+     "rate": 0.1388888888888889,
+     "best_lap": 7.450042724609375,
+     "tightest": 51.074642626488206,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-009",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 6.583364486694336,
+     "tightest": 103.21570967088245,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-010",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 92.15124234437671,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-011",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 2,
+     "rate": 0.027777777777777776,
+     "best_lap": 7.000036716461182,
+     "tightest": 125.80074109422236,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-012",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 8.183380126953125,
+     "tightest": 142.6528022357518,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-013",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 14,
+     "rate": 0.19444444444444445,
+     "best_lap": 5.883355140686035,
+     "tightest": 126.96226535387116,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-014",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 6.550030708312988,
+     "tightest": 101.68352028298354,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-015",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 51.24343332707931,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-016",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.5000433921813965,
+     "tightest": 92.70079959598958,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-017",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 6.0333571434021,
+     "tightest": 124.82563704955928,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-018",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.216706275939941,
+     "tightest": 116.6579700848763,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-019",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 96.97171731936692,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-020",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.800047397613525,
+     "tightest": 93.63779583635207,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-021",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 5,
+     "rate": 0.06944444444444445,
+     "best_lap": 8.400043487548828,
+     "tightest": 104.29129892393159,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-022",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.750046730041504,
+     "tightest": 71.11662446164084,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-023",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.816714286804199,
+     "tightest": 82.48776138215382,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-024",
+     "starts": 72,
+     "survived": 70,
+     "lapped": 70,
+     "rate": 0.9722222222222222,
+     "best_lap": 7.700046062469482,
+     "tightest": 47.51842284515994,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-025",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 6.550030708312988,
+     "tightest": 178.9331020034944,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-026",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 49.29737428843017,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-027",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 1,
+     "rate": 0.013888888888888888,
+     "best_lap": 7.51671028137207,
+     "tightest": 119.2430720477905,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-028",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 14,
+     "rate": 0.19444444444444445,
+     "best_lap": 7.416708946228027,
+     "tightest": 116.62879114225744,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-029",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.933382511138916,
+     "tightest": 103.58957091879266,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-030",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 10,
+     "rate": 0.1388888888888889,
+     "best_lap": 7.6000447273254395,
+     "tightest": 40.60062192678819,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-031",
+     "starts": 72,
+     "survived": 71,
+     "lapped": 71,
+     "rate": 0.9861111111111112,
+     "best_lap": 6.983369827270508,
+     "tightest": 63.50571720793051,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-032",
+     "starts": 72,
+     "survived": 71,
+     "lapped": 71,
+     "rate": 0.9861111111111112,
+     "best_lap": 9.150032043457031,
+     "tightest": 59.86026968814146,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-033",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 11,
+     "rate": 0.1527777777777778,
+     "best_lap": 8.016716003417969,
+     "tightest": 121.52219160856461,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-034",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 8.016716003417969,
+     "tightest": 80.12834445270857,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-035",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 51.98381289791317,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-036",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 62.11430797107388,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-037",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 6.716699600219727,
+     "tightest": 106.87799826807912,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-038",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 149.399877251471,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-039",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 56.9086718096443,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-040",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.083371162414551,
+     "tightest": 99.51548991854631,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-041",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 113.55524844981794,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-042",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.266706943511963,
+     "tightest": 133.8254974033376,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-043",
+     "starts": 72,
+     "survived": 71,
+     "lapped": 71,
+     "rate": 0.9861111111111112,
+     "best_lap": 8.983367919921875,
+     "tightest": 44.23968926068824,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-044",
+     "starts": 72,
+     "survived": 71,
+     "lapped": 71,
+     "rate": 0.9861111111111112,
+     "best_lap": 8.516708374023438,
+     "tightest": 64.99997821804037,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-045",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 56.25016758745225,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-046",
+     "starts": 72,
+     "survived": 71,
+     "lapped": 71,
+     "rate": 0.9861111111111112,
+     "best_lap": 8.883369445800781,
+     "tightest": 64.53565516376989,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-047",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 64.87406804251476,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-048",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 11,
+     "rate": 0.1527777777777778,
+     "best_lap": 6.350028038024902,
+     "tightest": 99.30346049609535,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-049",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.033370494842529,
+     "tightest": 80.13321121888862,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-050",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 60.46679389795477,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-051",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 11,
+     "rate": 0.1527777777777778,
+     "best_lap": 6.95003604888916,
+     "tightest": 98.8041891688871,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-052",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 64.86248450296617,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-053",
+     "starts": 72,
+     "survived": 50,
+     "lapped": 68,
+     "rate": 0.9444444444444444,
+     "best_lap": 8.533374786376953,
+     "tightest": 56.665800069659326,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-054",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 80.37156817442099,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-055",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 8,
+     "rate": 0.1111111111111111,
+     "best_lap": 6.083357810974121,
+     "tightest": 117.4374981625444,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-056",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 51.537139802627614,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-057",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 67.8732647920033,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-058",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 80.40914959863994,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-059",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 46.574151405173964,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-060",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 75.37202782568126,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-061",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 97.36207497012249,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-062",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 61.73951058230482,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-063",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 69.93903671171086,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-064",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.333374500274658,
+     "tightest": 152.705430704626,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-065",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.933382511138916,
+     "tightest": 73.77910297842197,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-066",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.283373832702637,
+     "tightest": 108.29707853365606,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-067",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 11,
+     "rate": 0.1527777777777778,
+     "best_lap": 6.850034713745117,
+     "tightest": 103.86756081406492,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-068",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.4000420570373535,
+     "tightest": 64.12632552151368,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-069",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 6.95003604888916,
+     "tightest": 95.93929056678668,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-070",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 10,
+     "rate": 0.1388888888888889,
+     "best_lap": 7.200039386749268,
+     "tightest": 126.16620759543689,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-071",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 6.050024032592773,
+     "tightest": 104.93721536639505,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-072",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.783380508422852,
+     "tightest": 79.65225154106153,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-073",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 52.852822908854414,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-074",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 6.800034046173096,
+     "tightest": 148.37898732062172,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-075",
+     "starts": 72,
+     "survived": 71,
+     "lapped": 71,
+     "rate": 0.9861111111111112,
+     "best_lap": 8.483375549316406,
+     "tightest": 71.39441533196387,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-076",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 8,
+     "rate": 0.1111111111111111,
+     "best_lap": 8.250045776367188,
+     "tightest": 42.69196063336989,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-077",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 62.046878688846554,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-078",
+     "starts": 72,
+     "survived": 44,
+     "lapped": 64,
+     "rate": 0.8888888888888888,
+     "best_lap": 8.633373260498047,
+     "tightest": 46.00315924941045,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-079",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 78.28212792275359,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-080",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 6.783367156982422,
+     "tightest": 113.66676568725136,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-081",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 8.400043487548828,
+     "tightest": 103.05848822885578,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-082",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 54.11062101515882,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-083",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.133371829986572,
+     "tightest": 83.82615612613377,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-084",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 131.1686072408776,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-085",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 8.550041198730469,
+     "tightest": 53.60568555400182,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-086",
+     "starts": 72,
+     "survived": 68,
+     "lapped": 68,
+     "rate": 0.9444444444444444,
+     "best_lap": 9.566692352294922,
+     "tightest": 49.37898266054775,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-087",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 87.31414644732183,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-088",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.066704273223877,
+     "tightest": 75.56393956453297,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-089",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 9,
+     "rate": 0.125,
+     "best_lap": 6.60003137588501,
+     "tightest": 151.60963593940747,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-090",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 14,
+     "rate": 0.19444444444444445,
+     "best_lap": 6.5333638191223145,
+     "tightest": 130.441983926156,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-091",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 47.76384140588589,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-092",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.233373165130615,
+     "tightest": 101.48092261135056,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-093",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 94.87070108203271,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-094",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.666712284088135,
+     "tightest": 75.04805502278606,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-095",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 6.7333664894104,
+     "tightest": 91.23380019048314,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-096",
+     "starts": 72,
+     "survived": 69,
+     "lapped": 69,
+     "rate": 0.9583333333333334,
+     "best_lap": 9.350028991699219,
+     "tightest": 41.86565594612021,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-097",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 6.466696262359619,
+     "tightest": 55.16422099429324,
+     "predicted_pass": true
+    },
+    {
+     "track": "gen7-098",
+     "starts": 72,
+     "survived": 0,
+     "lapped": 0,
+     "rate": 0.0,
+     "best_lap": null,
+     "tightest": 42.54078151798141,
+     "predicted_pass": false
+    },
+    {
+     "track": "gen7-099",
+     "starts": 72,
+     "survived": 72,
+     "lapped": 72,
+     "rate": 1.0,
+     "best_lap": 7.700046062469482,
+     "tightest": 87.18229215213408,
+     "predicted_pass": true
+    }
+   ]
+  }
+ }
+}
