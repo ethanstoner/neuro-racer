@@ -3,9 +3,11 @@
 tools/corner_sweep.py stopped at 28px in 6-amplitude steps and found floors of
 51px (snake) and 131px (chicane). Devlog 13 then had champions lapping 40.6px
 corners, the tightest the generated set contains. This sweeps the same wave
-family in 4-amplitude steps down to 14px, which is about the circle the car can
-hold at 40px/s (tests/test_premise.py measures 14.3px), so nothing tighter could
-be driven by any policy.
+shape, scaled to 0.9 so that it stays a legal track (no overlap, inside the
+arena) all the way down to an 11.6px corner. That's tighter than the circle the
+car can hold at 40px/s (tests/test_premise.py measures 14.3px), so nothing
+tighter could be driven by any policy. At full scale the family leaves the arena
+below 26px.
 
 Each champion is swept only in the direction(s) it trained in, so the floor
 measures corners and not direction (devlog 09-13). A both-ways champion's floor
@@ -25,24 +27,28 @@ import numpy as np
 from direction import CONDITIONS
 
 REVERSE = {"reverse": [True], "both": [False, True]}   # everything else trained clockwise
+SCALE = 0.9
 _T = np.linspace(0, 2 * np.pi, 600, endpoint=False)
 
 
 def wave(amplitude: float) -> np.ndarray:
-    """tools/corner_sweep.py's family: four lobes, tightness set by amplitude alone."""
-    r = 260 + amplitude * np.cos(4 * _T)
+    """tools/corner_sweep.py's family at 0.9 scale: four lobes, tightness set by amplitude alone."""
+    r = SCALE * (260 + amplitude * np.cos(4 * _T))
     return np.stack([600 + r * np.cos(_T) * 1.5, 400 + r * np.sin(_T) * 1.0], axis=1)
 
 
 def rungs(cfg):
-    from src.track import Track, min_centerline_radius, self_approach_distance
+    from src.track import Track, min_centerline_radius
+    from src.track_io import check
     from src.tracks import reverse_centerline
     out = []
-    for amp in range(0, 124, 4):
+    for amp in range(0, 128, 4):
         c = wave(float(amp))
-        track = Track.from_centerline(c, cfg, name=f"wave{amp}")
-        if self_approach_distance(track.centerline, cfg.track_width) <= cfg.track_width:
+        ck = check(c, cfg)
+        # a rung must be a legal track, or its failures say nothing about the champion
+        if ck.self_approach <= cfg.track_width or ck.arena_margin <= 0:
             continue
+        track = Track.from_centerline(c, cfg, name=f"wave{amp}")
         rev = Track.from_centerline(reverse_centerline(c), cfg, name=f"wave{amp}-reversed")
         out.append((min_centerline_radius(track.centerline), track, rev))
     return sorted(out, key=lambda r: -r[0])

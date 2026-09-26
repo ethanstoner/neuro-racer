@@ -56,4 +56,19 @@ seeds 1 to 5, 400 generations, each run read at generation 199 and 399.
 - B4 fails: start-pose variety isn't the kind of variety that transfers to new
   tracks.
 
-Result: to follow in 15. This file is committed before either experiment runs.
+## Amendment, before any champion was scored
+
+The first attempt at the sweep crashed on its opening champion. Below a 26px
+corner the full-size wave family runs off the 800px arena, and `floors.py` was
+missing the edge check `tools/corner_sweep.py` has. So the ruler described
+above ("31 rungs down to 14px") included illegal tracks. No rate was computed.
+
+The fixed ruler is the same wave shape at 0.9 scale, which stays legal down to
+an 11.6px corner: **32 rungs, 153px down to 12px**, every one checked for
+overlap and arena bounds. The predictions stand as written, with one change.
+A2's "within one rung of 51px" on the new rungs is **48.2px to 55.4px**, not
+46.4 to 54.7. A2 also now compares across a slightly smaller track than the
+original sweep, so a miss by one rung shouldn't be read as much.
+
+Result: to follow in 15. The original predictions were committed in b6e2c51,
+this amendment before any champion was scored.
