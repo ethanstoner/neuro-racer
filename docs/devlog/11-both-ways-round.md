@@ -92,6 +92,10 @@ The control that separates them is forward-only training with the simulation
 budget matched: 400 generations, or snake plus a second clockwise track. Until
 that runs, the corner result is an observation, not a finding.
 
+**Update:** it ran ([13](13-more-training.md)). The corner gain was mostly the
+extra training. The direction result held: one-way training at matched budget
+made a two-way driver in 1 of 5 seeds.
+
 ## Corrected claims
 
 > Training on one direction leaves it to chance whether the policy transfers to

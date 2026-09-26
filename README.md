@@ -114,6 +114,12 @@ tighter than the hardest one it trained on, then fails abruptly. A champion
 that memorises a trajectory has no floor at all** — the oval champion fails
 rungs *gentler* than the track it trained on.
 
+*Later correction:* at 200 generations and one direction of training that
+holds, but it's not a limit of the network. With twice the training, 3 of 5
+one-way seeds lap a 40.6px corner (0.58 of snake's 70px). Both-ways seeds do it
+5 of 5. That's the tightest corner in the test set, so the real floor may be
+lower still. See [devlog 13](docs/devlog/13-more-training.md) below.
+
 Both champions on clover, a track neither had seen. Trajectory coloured by
 speed — yellow fast, blue slow:
 
@@ -176,9 +182,19 @@ The published champion (seed 1) was the extreme case: one-way training leaves
 it to chance whether the policy transfers. Both-ways training made every seed
 direction-free. It also lapped every generated track, including 13 with corners
 tighter than the one-way floor, down to 40.6px. It had twice the simulation per
-generation, though, so whether that corner gain is direction variety or just
-more training is still open. Full write-up:
-[docs/devlog/11-both-ways-round.md](docs/devlog/11-both-ways-round.md).
+generation, though. Budget-matched controls settled that
+([devlog 13](docs/devlog/13-more-training.md)):
+
+| Same budget as both-ways | drives both ways (of 5) | tight clockwise tracks, median of 7 |
+| --- | --- | --- |
+| forward, 400 generations | 1 | 6 |
+| snake + chicane, both clockwise | 0 | 1 |
+| both ways | **5** | **7** |
+
+So direction has to be trained, but the corner gain was mostly extra training.
+The "0.75 floor" was an under-trained floor. Full write-ups:
+[devlog 11](docs/devlog/11-both-ways-round.md),
+[devlog 13](docs/devlog/13-more-training.md).
 
 ![both-ways champion on reversed snake](docs/devlog/img/eval-snake-both199-on-snake-reversed.png)
 
@@ -337,6 +353,7 @@ All headless, so they run in CI. The ones worth knowing about:
 10. [Prediction: is the one-way bias in the data or the network?](docs/devlog/10-prediction-direction.md)
 11. [Both ways round](docs/devlog/11-both-ways-round.md)
 12. [Prediction: direction, or just more training?](docs/devlog/12-prediction-budget.md)
+13. [Direction, and more training](docs/devlog/13-more-training.md)
 
 ## License
 

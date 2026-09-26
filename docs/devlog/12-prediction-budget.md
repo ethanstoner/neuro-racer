@@ -39,4 +39,4 @@ Both-ways champions lapped all 7 on every seed.
 - 3 fails for snake+chicane only: any second track helps corners, and
   direction was incidental to that part of the result.
 
-Result: to follow in 13. This file is committed before any of the 10 runs.
+Result: [13-more-training.md](13-more-training.md). This file was committed (5848a44) before any of the 10 runs.
