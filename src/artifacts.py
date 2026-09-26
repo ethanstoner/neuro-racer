@@ -15,7 +15,7 @@ FIELDS = ["generation", "best", "mean", "median", "alive", "laps", "best_lap"]
 
 
 class RunRecorder:
-    def __init__(self, directory, cfg: Config, track_name: str = ""):
+    def __init__(self, directory, cfg: Config, track_name: str = "", meta: dict | None = None):
         self.dir = Path(directory)
         self.dir.mkdir(parents=True, exist_ok=True)
         self.cfg = cfg
@@ -24,8 +24,8 @@ class RunRecorder:
         self._fh = open(self.dir / "history.csv", "w", newline="", encoding="utf-8")
         self._csv = csv.writer(self._fh)
         self._csv.writerow(FIELDS)
-        meta = {"track": track_name, "config": asdict(cfg)}
-        (self.dir / "config.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
+        info = {"track": track_name, **(meta or {}), "config": asdict(cfg)}
+        (self.dir / "config.json").write_text(json.dumps(info, indent=2), encoding="utf-8")
 
     def record(self, generation, best_genome, scores, laps, lap_time, alive):
         best_lap = float(np.min(lap_time)) if np.isfinite(lap_time).any() else None

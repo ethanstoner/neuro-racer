@@ -2,6 +2,11 @@
 
   python train.py --track oval --generations 150
   python train.py --track snake --generations 200 --seed 3
+  python train.py --track snake --direction both     # every car drives both ways
+
+--direction both scores each car on the track in both directions and ranks it by
+the mean. A car only counts as lapping if it laps both ways, and its lap time is
+the slower of the two.
 """
 import argparse
 import time
@@ -22,14 +27,21 @@ def main():
     p.add_argument("--population", type=int, default=100)
     p.add_argument("--out", default=None)
     p.add_argument("--quiet", action="store_true")
+    p.add_argument("--direction", choices=("forward", "reverse", "both"), default="forward")
     a = p.parse_args()
 
     cfg = Config(seed=a.seed, population=a.population)
     rng = np.random.default_rng(cfg.seed)
-    track = load(a.track, cfg)
+    tracks = {
+        "forward": [load(a.track, cfg)],
+        "reverse": [load(a.track, cfg, reverse=True)],
+        "both": [load(a.track, cfg), load(a.track, cfg, reverse=True)],
+    }[a.direction]
+    track = tracks[0]
     pop = random_population(cfg.population, cfg, rng)
-    out = a.out or f"runs/{slug(a.track)}-seed{a.seed}"
-    rec = RunRecorder(out, cfg, track_name=a.track)
+    label = slug(a.track) if a.direction == "forward" else f"{slug(a.track)}-{a.direction}"
+    out = a.out or f"runs/{label}-seed{a.seed}"
+    rec = RunRecorder(out, cfg, track_name=a.track, meta={"direction": a.direction})
 
     print(f"track={a.track}  pop={cfg.population}  seed={cfg.seed}  "
           f"corner={track.length:.0f}px lap")
@@ -38,20 +50,24 @@ def main():
     start = time.time()
     first_lap_gen = None
     for gen in range(a.generations):
-        r = run_generation(pop, track, cfg)
-        best_i = int(np.argmax(r.scores))
-        lap = float(np.min(r.lap_times))
-        rec.record(gen, pop[best_i], r.scores, r.laps, r.lap_times, r.alive)
+        results = [run_generation(pop, t, cfg) for t in tracks]
+        scores = np.mean([r.scores for r in results], axis=0)
+        laps = np.min([r.laps for r in results], axis=0)
+        lap_times = np.max([r.lap_times for r in results], axis=0)
+        alive = np.logical_and.reduce([r.alive for r in results])
+        best_i = int(np.argmax(scores))
+        lap = float(np.min(lap_times))
+        rec.record(gen, pop[best_i], scores, laps, lap_times, alive)
 
-        if first_lap_gen is None and r.laps.max() > 0:
+        if first_lap_gen is None and laps.max() > 0:
             first_lap_gen = gen
 
         if not a.quiet:
             lap_s = f"{lap:.2f}s" if np.isfinite(lap) else "--"
-            print(f"{gen:5d} {r.scores.max():10.1f} {r.scores.mean():10.1f} "
-                  f"{int(r.alive.sum()):6d} {int(r.laps.max()):5d} {lap_s:>7}")
+            print(f"{gen:5d} {scores.max():10.1f} {scores.mean():10.1f} "
+                  f"{int(alive.sum()):6d} {int(laps.max()):5d} {lap_s:>7}")
 
-        pop = next_generation(pop, r.scores, cfg, rng, mutation_sigma(gen, cfg))
+        pop = next_generation(pop, scores, cfg, rng, mutation_sigma(gen, cfg))
 
     rec.close()
     elapsed = time.time() - start

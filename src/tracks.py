@@ -106,10 +106,26 @@ def slug(name: str) -> str:
     return track_stem(name) if is_track_path(name) else name
 
 
-def load(name: str, cfg: Config) -> Track:
-    """A built-in track by name, or a track file by path (anything ending .json)."""
+def reverse_centerline(points: np.ndarray) -> np.ndarray:
+    """Same loop, same start point, driven the other way round."""
+    return np.vstack([points[:1], points[:0:-1]])
+
+
+def load(name: str, cfg: Config, reverse: bool = False) -> Track:
+    """A built-in track by name, or a track file by path (anything ending .json).
+
+    Every built-in runs clockwise on screen. `reverse=True` drives it the other
+    way, which is how devlog 09 found the snake champion only knows one of them.
+    """
     if is_track_path(name):
-        return load_file(name, cfg)
-    if name not in BUILDERS:
+        track = load_file(name, cfg)
+        if not reverse:
+            return track
+        points = track.centerline
+    elif name in BUILDERS:
+        points = BUILDERS[name]()
+    else:
         raise KeyError(f"unknown track {name!r}; have {sorted(BUILDERS)}")
-    return Track.from_centerline(BUILDERS[name](), cfg, name=name)
+    if reverse:
+        return Track.from_centerline(reverse_centerline(points), cfg, name=f"{slug(name)}-reversed")
+    return Track.from_centerline(points, cfg, name=name)

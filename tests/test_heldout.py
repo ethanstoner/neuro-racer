@@ -57,12 +57,7 @@ def test_the_chicane_champion_sits_between_the_two(champions):
 
 def reversed_rate(genome, track_name):
     """The same track, driven the other way: same start point, opposite direction."""
-    import numpy as np
-    from src.track import Track
-    from src.tracks import BUILDERS
-    pts = BUILDERS[track_name]()
-    track = Track.from_centerline(np.vstack([pts[:1], pts[:0:-1]]), CFG, name=f"{track_name}-rev")
-    return assess(genome, track, CFG, POINTS, OFFSETS)["rate"]
+    return assess(genome, load(track_name, CFG, reverse=True), CFG, POINTS, OFFSETS)["rate"]
 
 
 def test_the_snake_champion_only_drives_one_way_round(champions):

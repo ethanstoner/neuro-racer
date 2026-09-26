@@ -306,6 +306,7 @@ All headless, so they run in CI. The ones worth knowing about:
 7. [The held-out test, and the prediction it broke](docs/devlog/07-the-held-out-test.md)
 8. [A prediction for 100 tracks nobody drew](docs/devlog/08-prediction-generated.md)
 9. [100 tracks nobody drew, and the direction nobody tested](docs/devlog/09-the-generated-test.md)
+10. [Prediction: is the one-way bias in the data or the network?](docs/devlog/10-prediction-direction.md)
 
 ## License
 
