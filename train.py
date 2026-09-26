@@ -7,7 +7,7 @@ import argparse
 import time
 import numpy as np
 from config import Config
-from src.tracks import load
+from src.tracks import load, slug
 from src.net import random_population
 from src.simulation import run_generation
 from src.evolve import next_generation, mutation_sigma
@@ -28,7 +28,7 @@ def main():
     rng = np.random.default_rng(cfg.seed)
     track = load(a.track, cfg)
     pop = random_population(cfg.population, cfg, rng)
-    out = a.out or f"runs/{a.track}-seed{a.seed}"
+    out = a.out or f"runs/{slug(a.track)}-seed{a.seed}"
     rec = RunRecorder(out, cfg, track_name=a.track)
 
     print(f"track={a.track}  pop={cfg.population}  seed={cfg.seed}  "

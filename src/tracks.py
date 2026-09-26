@@ -25,6 +25,7 @@ intersect` enforces this; `tools/probe_tracks.py` scores candidate shapes.
 import numpy as np
 from config import Config
 from src.track import Track
+from src.track_io import is_track_path, load_file, track_stem
 
 _T = np.linspace(0, 2 * np.pi, 600, endpoint=False)
 
@@ -100,7 +101,15 @@ TRAINING = ("oval", "chicane", "snake")
 HELD_OUT = ("clover", "peanut", "ripple", "keyhole")
 
 
+def slug(name: str) -> str:
+    """Filesystem-safe label for a track name or track-file path, for run and image names."""
+    return track_stem(name) if is_track_path(name) else name
+
+
 def load(name: str, cfg: Config) -> Track:
+    """A built-in track by name, or a track file by path (anything ending .json)."""
+    if is_track_path(name):
+        return load_file(name, cfg)
     if name not in BUILDERS:
         raise KeyError(f"unknown track {name!r}; have {sorted(BUILDERS)}")
     return Track.from_centerline(BUILDERS[name](), cfg, name=name)

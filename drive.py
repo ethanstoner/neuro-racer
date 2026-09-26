@@ -21,7 +21,7 @@ if args.auto:
 import numpy as np
 import pygame
 from config import DEFAULT as CFG
-from src.tracks import load
+from src.tracks import load, slug
 from src.physics import CarState, step
 from src.sensors import cast
 from src.fitness import wrapped_delta
@@ -119,7 +119,7 @@ while running:
         running = False
 
 if args.auto:
-    pygame.image.save(screen, f"docs/devlog/img/drive-{args.track}.png")
+    pygame.image.save(screen, f"docs/devlog/img/drive-{slug(args.track)}.png")
     print(f"ran {ticks} ticks on {args.track}")
     print(f"  speed now : {float(np.linalg.norm(car.vel)):.0f} px/s")
     print(f"  lap cum   : {cum * 100:.1f}%")

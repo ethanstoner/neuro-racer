@@ -21,7 +21,7 @@ if args.shot:
 import numpy as np
 import pygame
 from config import DEFAULT as CFG
-from src.tracks import load
+from src.tracks import load, slug
 from src.sensors import cast
 from src.render.track_panel import build_track_surface, draw_cars, draw_rays
 
@@ -47,7 +47,7 @@ def compose():
 
 if args.shot:
     compose()
-    out = f"docs/devlog/img/track-{args.track}{'-rays' if args.rays else ''}.png"
+    out = f"docs/devlog/img/track-{slug(args.track)}{'-rays' if args.rays else ''}.png"
     pygame.image.save(screen, out)
     print(f"wrote {out}")
     print(f"  drivable px : {track.drivable.sum():,}")

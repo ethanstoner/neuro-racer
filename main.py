@@ -33,7 +33,7 @@ if HEADLESS:
 import numpy as np
 import pygame
 from config import Config
-from src.tracks import load
+from src.tracks import load, slug
 from src.net import random_population
 from src.simulation import run_generation
 from src.evolve import next_generation, mutation_sigma
@@ -57,7 +57,7 @@ cfg = Config(seed=args.seed, population=args.population)
 rng = np.random.default_rng(cfg.seed)
 track = load(args.track, cfg)
 pop = random_population(cfg.population, cfg, rng)
-recorder = RunRecorder(f"runs/{args.track}-seed{args.seed}-live", cfg, args.track)
+recorder = RunRecorder(f"runs/{slug(args.track)}-seed{args.seed}-live", cfg, args.track)
 
 pygame.init()
 _desk = pygame.display.Info()
@@ -199,7 +199,7 @@ if args.shot is not None:
     leader, champion = ingest(result)
     frames = result.frames
     compose(frames, frames.pos.shape[0] // 2, leader, champion)
-    out = f"docs/devlog/img/app-{args.track}-gen{args.shot}.png"
+    out = f"docs/devlog/img/app-{slug(args.track)}-gen{args.shot}.png"
     pygame.image.save(screen, out)
     print(f"wrote {out}  (gen {args.shot}, best {best_history[-1]:,.0f}, "
           f"laps {lap_history[-1]}, ticks {result.ticks_run})")

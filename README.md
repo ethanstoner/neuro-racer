@@ -257,6 +257,7 @@ All headless, so they run in CI. The ones worth knowing about:
 5. [One of them learned to drive. The other memorised a track.](docs/devlog/05-it-memorised-the-track.md)
 6. [A prediction, written down first](docs/devlog/06-prediction.md)
 7. [The held-out test, and the prediction it broke](docs/devlog/07-the-held-out-test.md)
+8. [A prediction for 100 tracks nobody drew](docs/devlog/08-prediction-generated.md)
 
 ## License
 
