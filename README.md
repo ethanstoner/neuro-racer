@@ -336,6 +336,7 @@ All headless, so they run in CI. The ones worth knowing about:
 9. [100 tracks nobody drew, and the direction nobody tested](docs/devlog/09-the-generated-test.md)
 10. [Prediction: is the one-way bias in the data or the network?](docs/devlog/10-prediction-direction.md)
 11. [Both ways round](docs/devlog/11-both-ways-round.md)
+12. [Prediction: direction, or just more training?](docs/devlog/12-prediction-budget.md)
 
 ## License
 

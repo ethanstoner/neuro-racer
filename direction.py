@@ -15,7 +15,10 @@ from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 import numpy as np
 
-CONDITIONS = {"forward": "snake", "reverse": "snake-reverse", "both": "snake-both"}
+CONDITIONS = {"forward": "snake", "reverse": "snake-reverse", "both": "snake-both",
+              # budget-matched controls for "both" (devlog 12)
+              "forward-400": "snake-400gen", "snake+chicane": "snake+chicane"}
+TIGHT = 51.0   # the one-way snake floor from the corner sweep
 
 
 def clockwise(points) -> bool:
@@ -43,9 +46,15 @@ def evaluate(job):
     for name in sorted(BUILDERS):
         out["builtins"][name] = {"forward": rate(load(name, cfg)),
                                  "reverse": rate(load(name, cfg, reverse=True))}
-    cw = ccw = n_cw = n_ccw = 0
+    cw = ccw = n_cw = n_ccw = tight = n_tight = tight_cw = n_tight_cw = 0
     for g in generate(100, 7, cfg):
         passed = rate(Track.from_centerline(g.centerline, cfg, name=g.name)) > 0.5
+        if g.check.tightest_radius < TIGHT:
+            n_tight += 1
+            tight += passed
+            if clockwise(g.centerline):
+                n_tight_cw += 1
+                tight_cw += passed
         if clockwise(g.centerline):
             n_cw += 1
             cw += passed
@@ -53,13 +62,15 @@ def evaluate(job):
             n_ccw += 1
             ccw += passed
     out["generated"] = {"clockwise": cw, "counter_clockwise": ccw, "n_clockwise": n_cw,
-                        "n_counter_clockwise": n_ccw}
+                        "n_counter_clockwise": n_ccw, "tight": tight, "n_tight": n_tight,
+                        "tight_clockwise": tight_cw, "n_tight_clockwise": n_tight_cw}
     return out
 
 
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--seeds", type=int, nargs="+", default=[1, 2, 3, 4, 5])
+    p.add_argument("--conditions", nargs="+", default=list(CONDITIONS), choices=list(CONDITIONS))
     p.add_argument("--runs", default="runs")
     p.add_argument("--points", type=int, default=24)
     p.add_argument("--offsets", type=int, default=3)
@@ -68,7 +79,8 @@ def main():
     a = p.parse_args()
 
     jobs = []
-    for condition, prefix in CONDITIONS.items():
+    for condition in a.conditions:
+        prefix = CONDITIONS[condition]
         for seed in a.seeds:
             d = Path(a.runs) / f"{prefix}-seed{seed}"
             if (d / "champions.json").exists():
@@ -79,15 +91,15 @@ def main():
     with ProcessPoolExecutor(a.workers) as pool:
         rows = list(pool.map(evaluate, jobs))
 
-    print(f"{'condition':9} {'seed':>4}  {'snake fwd':>9} {'snake rev':>9}  "
-          f"{'built-ins fwd':>13} {'built-ins rev':>13}  {'gen cw':>7} {'gen ccw':>7}")
+    print(f"{'condition':13} {'seed':>4}  {'snake fwd':>9} {'snake rev':>9}  "
+          f"{'built-ins fwd':>13} {'built-ins rev':>13}  {'gen cw':>7} {'gen ccw':>7} {'<51px':>6} {'<51 cw':>6}")
     for r in rows:
         bf = np.mean([v["forward"] for v in r["builtins"].values()])
         br = np.mean([v["reverse"] for v in r["builtins"].values()])
         g = r["generated"]
-        print(f"{r['condition']:9} {r['seed']:4d}  {100 * r['snake_forward']:8.0f}% "
+        print(f"{r['condition']:13} {r['seed']:4d}  {100 * r['snake_forward']:8.0f}% "
               f"{100 * r['snake_reverse']:8.0f}%  {100 * bf:12.0f}% {100 * br:12.0f}%  "
-              f"{g['clockwise']:3d}/{g['n_clockwise']:<3d} {g['counter_clockwise']:3d}/{g['n_counter_clockwise']:<3d}")
+              f"{g['clockwise']:3d}/{g['n_clockwise']:<3d} {g['counter_clockwise']:3d}/{g['n_counter_clockwise']:<3d} {g['tight']:2d}/{g['n_tight']} {g['tight_clockwise']:3d}/{g['n_tight_clockwise']}")
 
     if a.json:
         Path(a.json).parent.mkdir(parents=True, exist_ok=True)

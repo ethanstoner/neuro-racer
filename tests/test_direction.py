@@ -29,3 +29,12 @@ def test_both_directions_training_records_its_direction(tmp_path):
                    cwd=ROOT, check=True, capture_output=True)
     assert json.loads((out / "config.json").read_text())["direction"] == "both"
     assert len(json.loads((out / "champions.json").read_text())) == 2
+
+
+def test_training_on_several_tracks_records_them_all(tmp_path):
+    out = tmp_path / "run"
+    subprocess.run([sys.executable, "train.py", "--track", "oval", "chicane",
+                    "--generations", "1", "--population", "8", "--out", str(out), "--quiet"],
+                   cwd=ROOT, check=True, capture_output=True)
+    info = json.loads((out / "config.json").read_text())
+    assert info["tracks"] == ["oval", "chicane"] and info["track"] == "oval"

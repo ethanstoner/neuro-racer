@@ -3,10 +3,11 @@
   python train.py --track oval --generations 150
   python train.py --track snake --generations 200 --seed 3
   python train.py --track snake --direction both     # every car drives both ways
+  python train.py --track snake chicane              # every car drives both tracks
 
 --direction both scores each car on the track in both directions and ranks it by
-the mean. A car only counts as lapping if it laps both ways, and its lap time is
-the slower of the two.
+the mean. Several --track names do the same across tracks. Either way, a car
+only counts as lapping if it laps every one, and its lap time is its slowest.
 """
 import argparse
 import time
@@ -21,7 +22,7 @@ from src.artifacts import RunRecorder
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--track", default="oval")
+    p.add_argument("--track", nargs="+", default=["oval"])
     p.add_argument("--generations", type=int, default=100)
     p.add_argument("--seed", type=int, default=1)
     p.add_argument("--population", type=int, default=100)
@@ -32,18 +33,17 @@ def main():
 
     cfg = Config(seed=a.seed, population=a.population)
     rng = np.random.default_rng(cfg.seed)
-    tracks = {
-        "forward": [load(a.track, cfg)],
-        "reverse": [load(a.track, cfg, reverse=True)],
-        "both": [load(a.track, cfg), load(a.track, cfg, reverse=True)],
-    }[a.direction]
+    directions = {"forward": [False], "reverse": [True], "both": [False, True]}[a.direction]
+    tracks = [load(name, cfg, reverse=r) for name in a.track for r in directions]
     track = tracks[0]
+    name = "+".join(slug(t) for t in a.track)
     pop = random_population(cfg.population, cfg, rng)
-    label = slug(a.track) if a.direction == "forward" else f"{slug(a.track)}-{a.direction}"
+    label = name if a.direction == "forward" else f"{name}-{a.direction}"
     out = a.out or f"runs/{label}-seed{a.seed}"
-    rec = RunRecorder(out, cfg, track_name=a.track, meta={"direction": a.direction})
+    rec = RunRecorder(out, cfg, track_name=a.track[0],
+                      meta={"direction": a.direction, "tracks": a.track})
 
-    print(f"track={a.track}  pop={cfg.population}  seed={cfg.seed}  "
+    print(f"track={name}  pop={cfg.population}  seed={cfg.seed}  "
           f"corner={track.length:.0f}px lap")
     print(f"{'gen':>5} {'best':>10} {'mean':>10} {'alive':>6} {'laps':>5} {'lap':>7}")
 
