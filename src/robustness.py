@@ -39,6 +39,24 @@ def spawn_grid(track, cfg: Config, n_points: int = 24, n_offsets: int = 3) -> np
     return np.array(poses, dtype=np.float32)
 
 
+def random_pose(track, cfg: Config, rng: np.random.Generator) -> np.ndarray:
+    """One spawn pose drawn from the same distribution spawn_grid covers: anywhere
+    along the lap, up to 0.7 of the usable half-width off the line, facing along
+    the track. Resampled until the car's body fits, which it nearly always does.
+    """
+    c = track.centerline
+    m = len(c)
+    span = (cfg.track_width / 2 - cfg.car_radius) * 0.7
+    while True:
+        i = int(rng.integers(m))
+        tangent = c[(i + 3) % m] - c[i]
+        heading = np.arctan2(tangent[1], tangent[0])
+        normal = np.array([-np.sin(heading), np.cos(heading)])
+        pt = c[i] + normal * rng.uniform(-span, span)
+        if track.body_ok[int(pt[1]), int(pt[0])]:
+            return np.array([pt[0], pt[1], heading], dtype=np.float32)
+
+
 def assess(genome, track, cfg: Config, points: int = 24, offsets: int = 3) -> dict:
     """Run one genome from every viable pose on `track`; count the laps.
 

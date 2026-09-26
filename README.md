@@ -354,6 +354,7 @@ All headless, so they run in CI. The ones worth knowing about:
 11. [Both ways round](docs/devlog/11-both-ways-round.md)
 12. [Prediction: direction, or just more training?](docs/devlog/12-prediction-budget.md)
 13. [Direction, and more training](docs/devlog/13-more-training.md)
+14. [Prediction: the real corner floor, and random start poses](docs/devlog/14-prediction-floors.md)
 
 ## License
 

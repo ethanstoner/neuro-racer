@@ -15,9 +15,13 @@ from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 import numpy as np
 
-CONDITIONS = {"forward": "snake", "reverse": "snake-reverse", "both": "snake-both",
+# condition -> (run directory prefix, which generation's champion; -1 is the last)
+CONDITIONS = {"forward": ("snake", -1), "reverse": ("snake-reverse", -1),
+              "both": ("snake-both", -1),
               # budget-matched controls for "both" (devlog 12)
-              "forward-400": "snake-400gen", "snake+chicane": "snake+chicane"}
+              "forward-400": ("snake-400gen", -1), "snake+chicane": ("snake+chicane", -1),
+              # random start pose every generation (devlog 14), one run read twice
+              "random-start": ("snake-random", 199), "random-start-400": ("snake-random", -1)}
 TIGHT = 51.0   # the one-way snake floor from the corner sweep
 
 
@@ -28,7 +32,7 @@ def clockwise(points) -> bool:
 
 
 def evaluate(job):
-    condition, seed, run_dir, points, offsets = job
+    condition, seed, run_dir, generation, points, offsets = job
     from config import Config
     from src.artifacts import RunRecorder
     from src.procgen import generate
@@ -37,7 +41,7 @@ def evaluate(job):
     from src.tracks import BUILDERS, load
 
     cfg = Config()
-    genome = RunRecorder.load_champion(run_dir)
+    genome = RunRecorder.load_champion(run_dir, generation)
     rate = lambda t: assess(genome, t, cfg, points, offsets)["rate"]
     out = {"condition": condition, "seed": seed,
            "snake_forward": rate(load("snake", cfg)),
@@ -71,6 +75,8 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--seeds", type=int, nargs="+", default=[1, 2, 3, 4, 5])
     p.add_argument("--conditions", nargs="+", default=list(CONDITIONS), choices=list(CONDITIONS))
+    p.add_argument("--merge", action="store_true",
+                   help="replace these conditions' rows in --json and keep the rest")
     p.add_argument("--runs", default="runs")
     p.add_argument("--points", type=int, default=24)
     p.add_argument("--offsets", type=int, default=3)
@@ -80,11 +86,11 @@ def main():
 
     jobs = []
     for condition in a.conditions:
-        prefix = CONDITIONS[condition]
+        prefix, generation = CONDITIONS[condition]
         for seed in a.seeds:
             d = Path(a.runs) / f"{prefix}-seed{seed}"
             if (d / "champions.json").exists():
-                jobs.append((condition, seed, str(d), a.points, a.offsets))
+                jobs.append((condition, seed, str(d), generation, a.points, a.offsets))
             else:
                 print(f"missing {d}, skipped")
 
@@ -102,8 +108,13 @@ def main():
               f"{g['clockwise']:3d}/{g['n_clockwise']:<3d} {g['counter_clockwise']:3d}/{g['n_counter_clockwise']:<3d} {g['tight']:2d}/{g['n_tight']} {g['tight_clockwise']:3d}/{g['n_tight_clockwise']}")
 
     if a.json:
-        Path(a.json).parent.mkdir(parents=True, exist_ok=True)
-        Path(a.json).write_text(json.dumps(rows, indent=1), encoding="utf-8")
+        out = Path(a.json)
+        if a.merge and out.exists():
+            kept = [r for r in json.loads(out.read_text(encoding="utf-8"))
+                    if r["condition"] not in a.conditions]
+            rows = kept + rows
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(rows, indent=1), encoding="utf-8")
         print(f"wrote {a.json}")
 
 

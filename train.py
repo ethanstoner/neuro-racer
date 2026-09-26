@@ -4,6 +4,7 @@
   python train.py --track snake --generations 200 --seed 3
   python train.py --track snake --direction both     # every car drives both ways
   python train.py --track snake chicane              # every car drives both tracks
+  python train.py --track snake --random-starts      # a new start pose every generation
 
 --direction both scores each car on the track in both directions and ranks it by
 the mean. Several --track names do the same across tracks. Either way, a car
@@ -18,6 +19,7 @@ from src.net import random_population
 from src.simulation import run_generation
 from src.evolve import next_generation, mutation_sigma
 from src.artifacts import RunRecorder
+from src.robustness import random_pose
 
 
 def main():
@@ -29,6 +31,8 @@ def main():
     p.add_argument("--out", default=None)
     p.add_argument("--quiet", action="store_true")
     p.add_argument("--direction", choices=("forward", "reverse", "both"), default="forward")
+    p.add_argument("--random-starts", action="store_true",
+                   help="each generation, every car starts from the same freshly drawn pose")
     a = p.parse_args()
 
     cfg = Config(seed=a.seed, population=a.population)
@@ -39,9 +43,14 @@ def main():
     name = "+".join(slug(t) for t in a.track)
     pop = random_population(cfg.population, cfg, rng)
     label = name if a.direction == "forward" else f"{name}-{a.direction}"
+    if a.random_starts:
+        label += "-random"
+    # a separate stream, so the evolution rng draws exactly what it always did
+    start_rng = np.random.default_rng(cfg.seed + 10_000)
     out = a.out or f"runs/{label}-seed{a.seed}"
     rec = RunRecorder(out, cfg, track_name=a.track[0],
-                      meta={"direction": a.direction, "tracks": a.track})
+                      meta={"direction": a.direction, "tracks": a.track,
+                            "random_starts": a.random_starts})
 
     print(f"track={name}  pop={cfg.population}  seed={cfg.seed}  "
           f"corner={track.length:.0f}px lap")
@@ -50,7 +59,11 @@ def main():
     start = time.time()
     first_lap_gen = None
     for gen in range(a.generations):
-        results = [run_generation(pop, t, cfg) for t in tracks]
+        if a.random_starts:
+            poses = [np.tile(random_pose(t, cfg, start_rng), (len(pop), 1)) for t in tracks]
+        else:
+            poses = [None] * len(tracks)
+        results = [run_generation(pop, t, cfg, starts=s) for t, s in zip(tracks, poses)]
         scores = np.mean([r.scores for r in results], axis=0)
         laps = np.min([r.laps for r in results], axis=0)
         lap_times = np.max([r.lap_times for r in results], axis=0)

@@ -38,3 +38,28 @@ def test_training_on_several_tracks_records_them_all(tmp_path):
                    cwd=ROOT, check=True, capture_output=True)
     info = json.loads((out / "config.json").read_text())
     assert info["tracks"] == ["oval", "chicane"] and info["track"] == "oval"
+
+
+def test_random_poses_fit_the_car_and_face_along_the_track():
+    from src.robustness import random_pose
+    track = load("snake", CFG)
+    rng = np.random.default_rng(0)
+    poses = [random_pose(track, CFG, rng) for _ in range(200)]
+    c = track.centerline
+    for x, y, h in poses:
+        assert track.body_ok[int(y), int(x)]
+        i = int(np.argmin(np.linalg.norm(c - [x, y], axis=1)))
+        t = c[(i + 3) % len(c)] - c[i]
+        assert np.cos(h - np.arctan2(t[1], t[0])) > 0.9, "must face along the lap"
+    # spread round the lap, not clustered at the start line
+    assert np.ptp([p[0] for p in poses]) > 700
+    again = [random_pose(track, CFG, np.random.default_rng(0)) for _ in range(1)]
+    np.testing.assert_array_equal(again[0], poses[0])
+
+
+def test_random_start_training_records_it(tmp_path):
+    out = tmp_path / "run"
+    subprocess.run([sys.executable, "train.py", "--track", "oval", "--random-starts",
+                    "--generations", "2", "--population", "8", "--out", str(out), "--quiet"],
+                   cwd=ROOT, check=True, capture_output=True)
+    assert json.loads((out / "config.json").read_text())["random_starts"] is True
