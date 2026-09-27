@@ -17,23 +17,25 @@ actual network, redrawn every generation as it evolves.*
 ### Highlights
 
 - **Found a hidden bias in the headline result.** The champion presented as the
-  one that generalises laps **0%** of starts on all seven built-in tracks driven
-  the other way, including its own. Every built-in track ran clockwise, so
-  nothing had tested it. Training both directions made **5 of 5** seeds lap
-  all 100 generated held-out tracks and all 7 built-ins both ways.
-- **Separated direction from compute with budget-matched controls.** At equal
-  simulation budget, one-way training produced a two-way driver in 1 of 5 seeds
-  (400 generations) and 0 of 5 (two clockwise tracks), against 5 of 5 for
-  both-ways.
-- **Showed the "corner floor" was a training artefact.** Measured on a 32-rung
-  sweep: 43px after 200 one-way generations, 27px after 400, and 12px (the end
-  of the ruler) when trained both ways.
-- **100 cars for 8.7× the cost of one.** The whole population steps as NumPy
-  arrays, so a full 200-generation run takes about 5 minutes on one core.
+  one that generalises laps **43 of 43** clockwise held-out tracks and **0 of
+  42** counter-clockwise ones, and 0% of starts on all seven built-in tracks
+  driven the other way, its own included. Every built-in track ran clockwise,
+  so nothing had tested it.
+- **Fixed it, and proved what fixed it.** Training both directions made **5 of
+  5** seeds lap all 100 generated held-out tracks and all 7 built-ins both ways.
+  Budget-matched controls got a two-way driver in only 1 of 5 seeds (twice the
+  generations) and 0 of 5 (a second clockwise track).
+- **Showed the "corner floor" was a training artefact.** On a 32-rung sweep the
+  floor goes from 43px after 200 one-way generations, to 27px after 400, to
+  12px (the end of the ruler) when trained both ways.
+- **Built a companion track editor, tested for parity with the trainer.** A
+  TypeScript editor ([virtual-world](https://github.com/ethanstoner/virtual-world))
+  measures tracks live using ports of the trainer's numpy code, agreeing to
+  within 0.005 on a fresh export. 30 tests cover it, 14 of them driving the
+  real app in a browser with mouse and touch.
 
-**Python · NumPy · pygame**, with a TypeScript track editor
-([virtual-world](https://github.com/ethanstoner/virtual-world)) that shares
-the track format.
+**Python · NumPy · pygame** for the simulator and trainer, **TypeScript ·
+Canvas · Vite · Playwright** for the editor.
 
 ## What it found
 
@@ -121,10 +123,12 @@ are stacked arrays, and the population's forward pass is two `einsum` calls:
 
 | Population | ms / tick | µs per car-tick | vs. 1 car |
 | --- | --- | --- | --- |
-| 1 | 0.079 | 79.4 | 1.0× |
-| 10 | 0.120 | 12.0 | 1.5× |
-| 100 | 0.692 | 6.9 | 8.7× |
-| 500 | 2.940 | 5.9 | 37.0× |
+| 1 | 0.11 | 111 | 1.0× |
+| 10 | 0.15 | 15 | 1.3× |
+| 100 | 0.63 to 0.79 | 6.3 to 7.9 | 5.7× to 7.0× |
+| 500 | 3.6 to 3.7 | 7.1 to 7.4 | 32× |
+
+(`tools/tick_cost.py`, best of five, two runs.)
 
 **Fitness is staged.** Progress along the lap until someone finishes, then lap
 time. A crash ends the run but keeps what the car earned; punishing crashes
@@ -134,6 +138,18 @@ harder than idling makes generation 1 evolve parked cars.
 learn. `tests/test_premise.py` measures this from the simulation and fails if
 tuning ever makes flooring it optimal everywhere.
 
+## The track editor
+
+![Track editor: dragging a handle pinches the loop, two checks fail and Export locks](docs/media/track-editor.gif)
+
+Tracks are drawn in [virtual-world](https://github.com/ethanstoner/virtual-world),
+a browser editor built for this project. It re-measures the track on every
+drag (2.5 to 3.8ms per analysis) using TypeScript ports of the trainer's
+measurements, blocks export while a track breaks a rule the trainer enforces,
+and writes the JSON `scripts.train --track` loads directly. Parity is tested in
+both directions: a file exported from the editor's UI is a fixture here, and a
+file written here is a fixture there.
+
 ## Engineering highlights
 
 - Designed the evaluation around **pre-registration**: five prediction documents
@@ -142,8 +158,8 @@ tuning ever makes flooring it optimal everywhere.
   as a miss rather than re-explained.
 - **Made training deterministic and proved it**: re-running seed 1 rebuilds the
   published champion bit for bit, so every result can be re-derived from a seed.
-- **Vectorised the whole population**: a tick for 100 cars costs 0.69ms, 8.7× a
-  single car, because per-call NumPy overhead is shared. The 30 training runs
+- **Vectorised the whole population**: a tick for 100 cars costs 5.7 to 7.0×
+  what one car costs, not 100×, because per-call NumPy overhead is shared. The 30 training runs
   behind devlogs 11 to 15 ran in three parallel batches of 15 to 17 minutes
   each.
 - **Built budget-matched controls** (400 generations; a second clockwise track)
