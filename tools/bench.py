@@ -10,7 +10,7 @@ import time
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import numpy as np  # noqa: E402
-from config import Config  # noqa: E402
+from src.config import Config  # noqa: E402
 from src.tracks import load  # noqa: E402
 from src.net import random_population  # noqa: E402
 from src.simulation import run_generation  # noqa: E402

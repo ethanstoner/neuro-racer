@@ -19,7 +19,7 @@ A candidate is kept only if it passes the same checks as an editor export
 """
 from dataclasses import dataclass
 import numpy as np
-from config import Config
+from src.config import Config
 from src.track_io import TrackCheck, check
 
 HARMONICS = (2, 3, 4, 5)

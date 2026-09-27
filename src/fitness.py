@@ -7,7 +7,7 @@ Two rules matter more than the rest:
      staged: progress first, then time takes over once a lap is completed.
 """
 import numpy as np
-from config import Config
+from src.config import Config
 
 
 def wrapped_delta(now: np.ndarray, prev: np.ndarray) -> np.ndarray:

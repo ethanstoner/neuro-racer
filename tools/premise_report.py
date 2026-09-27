@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.join(ROOT, "tests"))
 
 from test_premise import measured_turn_radius, min_corner_radius  # noqa: E402
 from src.tracks import BUILDERS  # noqa: E402
-from config import DEFAULT as CFG  # noqa: E402
+from src.config import DEFAULT as CFG  # noqa: E402
 
 print("turn radius achievable at full steering lock")
 for v in (90, 150, 210, 270, 330, 420):

@@ -9,13 +9,13 @@ across the track). Then every champion scores 0% and the conclusion would be
 from pathlib import Path
 import numpy as np
 import pytest
-from config import Config
+from src.config import Config
 from src.tracks import load, BUILDERS
 from src.robustness import spawn_grid, assess
 from src.artifacts import RunRecorder
 
 CFG = Config()
-CHAMPIONS = Path(__file__).resolve().parent.parent / "champions"
+CHAMPIONS = Path(__file__).resolve().parent.parent / "data" / "champions"
 
 
 @pytest.fixture(scope="module")

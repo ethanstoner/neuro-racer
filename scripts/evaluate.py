@@ -1,8 +1,8 @@
 """Replay a saved champion, optionally on a track it never trained on.
 
-  python evaluate.py --run runs/oval-seed1 --track oval
-  python evaluate.py --run runs/oval-seed1 --track snake --shot
-  python evaluate.py --run runs/oval-seed1 --gen 0 --shot     # first generation
+  python -m scripts.evaluate --run runs/oval-seed1 --track oval
+  python -m scripts.evaluate --run runs/oval-seed1 --track snake --shot
+  python -m scripts.evaluate --run runs/oval-seed1 --gen 0 --shot     # first generation
 
 The --shot form draws the champion's actual trajectory over the track and
 writes a PNG, which is how you check that a suspiciously good lap time is a
@@ -22,7 +22,7 @@ if args.shot:
     os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 import numpy as np
-from config import Config
+from src.config import Config
 from src.tracks import load, slug
 from src.artifacts import RunRecorder
 from src.simulation import run_generation

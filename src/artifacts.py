@@ -9,7 +9,7 @@ import json
 from dataclasses import asdict
 from pathlib import Path
 import numpy as np
-from config import Config
+from src.config import Config
 
 FIELDS = ["generation", "best", "mean", "median", "alive", "laps", "best_lap"]
 

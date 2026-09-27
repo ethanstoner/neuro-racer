@@ -99,6 +99,41 @@ Champions lap "12px corners" on a far wider line. Training from a random start
 pose every generation fixed a robustness drift on the training track, but
 didn't improve generalisation: it made robust specialists.
 
+## Architecture
+
+```
+centerline + width ──rasterise once──▶ drivable / progress / checkpoint masks (1200×800)
+                                                     │ array lookups
+population (100 × 99-weight genomes)                 ▼
+   7 raycasts + speed ──▶ 8-8-3 MLP ──▶ throttle, brake, steer ──▶ physics step ×2400
+                                                     │
+                     staged fitness: progress, then lap time
+                                                     ▼
+                  elitism + tournament selection + annealed mutation ──▶ next generation
+```
+
+**A track is three arrays.** Collision, lap progress and raycasting are lookups
+into masks rasterised once from the centerline, so there is no geometry code in
+the hot loop. Raycasting is 48 samples along each ray.
+
+**The whole population moves in lockstep.** Positions, velocities and genomes
+are stacked arrays, and the population's forward pass is two `einsum` calls:
+
+| Population | ms / tick | µs per car-tick | vs. 1 car |
+| --- | --- | --- | --- |
+| 1 | 0.079 | 79.4 | 1.0× |
+| 10 | 0.120 | 12.0 | 1.5× |
+| 100 | 0.692 | 6.9 | 8.7× |
+| 500 | 2.940 | 5.9 | 37.0× |
+
+**Fitness is staged.** Progress along the lap until someone finishes, then lap
+time. A crash ends the run but keeps what the car earned; punishing crashes
+harder than idling makes generation 1 evolve parked cars.
+
+**Steering fades with speed**, which is the only reason braking is something to
+learn. `tests/test_premise.py` measures this from the simulation and fails if
+tuning ever makes flooring it optimal everywhere.
+
 ## Engineering highlights
 
 - Designed the evaluation around **pre-registration**: five prediction documents
@@ -111,150 +146,77 @@ didn't improve generalisation: it made robust specialists.
   single car, because per-call NumPy overhead is shared. The 30 training runs
   behind devlogs 11 to 15 ran in three parallel batches of 15 to 17 minutes
   each.
-- **Represented a track as three rasterised arrays** (`drivable`, `progress`,
-  `checkpoint`), so collision, lap progress and raycasting are array lookups
-  with no geometry code in the hot loop.
+- **Built budget-matched controls** (400 generations; a second clockwise track)
+  to separate the effect of direction data from the effect of more simulation.
 - **Kept the measurements honest across languages**: the virtual-world editor
   ports the track metrics to TypeScript. Parity is tested both ways through
   fixture files, which also exposed that rounding coordinates to 0.01px moves
   the corner-radius reading by about 3%.
 
-## Quick start
+## Getting started
 
 ```bash
 python -m venv venv
 venv\Scripts\python.exe -m pip install -r requirements.txt
 
-venv\Scripts\python.exe main.py --track snake      # watch it learn
-venv\Scripts\python.exe drive.py snake             # drive it yourself
-venv\Scripts\python.exe train.py --track snake --generations 200
-venv\Scripts\python.exe train.py --track snake --direction both      # both ways round
-venv\Scripts\python.exe train.py --track snake chicane               # several tracks
-venv\Scripts\python.exe train.py --track snake --random-starts       # new start pose each generation
-venv\Scripts\python.exe train.py --track my-track.track.json         # a track file
+venv\Scripts\python.exe -m scripts.app --track snake        # watch it learn
+venv\Scripts\python.exe -m scripts.drive snake              # drive it yourself
+venv\Scripts\python.exe -m scripts.train --track snake --generations 200
 ```
 
-| Key | |
-| --- | --- |
-| `1` `2` `3` | playback speed 1× / 4× / 16× |
-| `H` | headless burst: 10 generations with no rendering |
-| `SPACE` | pause |
-| `S` | screenshot |
-| `ESC` | quit |
+Run everything from the repo root. `scripts.train` also takes
+`--direction both`, several track names (`--track snake chicane`),
+`--random-starts`, and track files from the virtual-world editor
+(`--track my-track.track.json`).
 
-Track files come from the virtual-world editor, which checks the same rules the
-loader enforces: no overlap, inside the arena, and a tightest centerline radius
-of at least 40px.
+In the live app: `1` `2` `3` set playback speed, `H` runs 10 generations
+headless, `SPACE` pauses, `S` saves a screenshot.
 
 ### Reproducing the results
 
-The champions are committed under `champions/`, so none of this has to be taken
-on trust:
+The champions are committed under `data/champions/`, so none of this has to be
+taken on trust:
 
 ```bash
-venv\Scripts\python.exe heldout.py                 # the four hand-made held-out tracks
-venv\Scripts\python.exe generalise.py              # champions vs 100 generated tracks
-venv\Scripts\python.exe direction.py               # every condition, both directions
-venv\Scripts\python.exe floors.py                  # the 32-rung corner sweep
-venv\Scripts\python.exe robustness.py --run champions/snake --all-tracks
+venv\Scripts\python.exe -m experiments.heldout      # the four hand-made held-out tracks
+venv\Scripts\python.exe -m experiments.generalise   # champions vs 100 generated tracks
+venv\Scripts\python.exe -m experiments.direction    # every training condition, both directions
+venv\Scripts\python.exe -m experiments.floors       # the 32-rung corner sweep
 ```
 
-`direction.py` and `floors.py` read training runs from `runs/`, which isn't
-committed. The command for each run is at the top of its devlog.
+`experiments.direction` and `experiments.floors` read training runs from
+`runs/`, which isn't committed. The command for each run is at the top of its
+devlog. Results land in `docs/results/`.
 
-## How it works
-
-**A track is three arrays.** A centerline plus a width, rasterised once into
-`drivable`, `progress` and `checkpoint` maps over the 1200×800 world. Raycasting
-is 48 samples along each ray gathered from the mask.
-
-**The whole population moves in lockstep.** Positions, velocities and genomes
-are stacked arrays, and the population's forward pass is two `einsum` calls:
-
-| Population | ms / tick | µs per car-tick | vs. 1 car |
-| --- | --- | --- | --- |
-| 1 | 0.079 | 79.4 | 1.0× |
-| 10 | 0.120 | 12.0 | 1.5× |
-| 100 | 0.692 | 6.9 | 8.7× |
-| 500 | 2.940 | 5.9 | 37.0× |
-
-**Sensors → network → controls.** Seven raycast distances spread ±90°, plus
-speed, into 8 → 8 → 3 (throttle, brake, steer): 99 weights, small enough that
-every connection is drawn in the visualiser.
-
-**Fitness is staged.** Progress along the lap until someone finishes, then lap
-time. A crash ends the run but keeps what the car earned; punishing crashes
-harder than idling makes generation 1 evolve parked cars. Three seconds without
-progress and the car is culled.
-
-**Steering fades with speed**, which is the only reason braking is something to
-learn. `tests/test_premise.py` measures this from the simulation and fails if
-tuning ever makes flooring it optimal everywhere.
-
-## Layout
-
-Anything you run lives at the top level. `src/` is library code with no CLI,
-`tools/` is instrumentation.
-
-```
-config.py            every tunable, one frozen dataclass
-
-main.py              the live app
-train.py             headless training: directions, several tracks, random starts
-drive.py             arrow-key driving, human baseline
-evaluate.py          replay a champion, draw its trajectory by speed
-preview_track.py     rasterise a track to PNG
-robustness.py        policy, or one memorised trajectory?
-heldout.py           every champion vs. the four unseen tracks
-generalise.py        every champion vs. a seeded set of generated tracks
-direction.py         every training condition, scored in both directions
-floors.py            the 32-rung corner-floor sweep
-
-src/                 library -- imported, never executed
-  track.py           centerline + width -> the three masks, corner geometry
-  tracks.py          built-in tracks; load() also takes a file path or reverse=True
-  track_io.py        track files: the editor's format and the rules they must pass
-  procgen.py         seeded star-shaped tracks for held-out sets
-  physics.py         arcade step over population arrays
-  sensors.py         vectorised mask-sampling raycast
-  net.py             batched 8-8-3 MLP, flat genome
-  fitness.py         staged scoring, wrapped progress, idle culling
-  evolve.py          elitism, tournament selection, annealed mutation
-  robustness.py      spawn grid, random start poses, lap-rate assessment
-  simulation.py      headless generation runner (never imports pygame)
-  artifacts.py       run recorder -- history.csv and champions.json
-  pump.py            background generation worker for the live app
-  render/            track, network, chart and HUD panels
-
-tools/               instrumentation
-tracks/              track files used by the devlog images
-champions/           oval, chicane, snake and snake-both, committed so the
-                     published numbers can be re-measured
-tests/               all headless, so they run in CI
-docs/                devlog, and the JSON behind every results table
-```
-
-## Tests
+## Testing
 
 ```bash
-venv\Scripts\python.exe -m pytest        # 213 tests
+venv\Scripts\python.exe -m pytest        # 213 tests, all headless, run in CI
 ```
 
-All headless, so they run in CI. The ones worth knowing about:
+The ones worth knowing about:
 
 - `test_premise.py`: the tracks must contain corners the car can't take flat
   out, so a tuning change can't quietly make the problem trivial.
 - `test_car_cannot_ride_the_wall`: collision uses the car's body. The first
   random population found the wall-hugging exploit immediately.
-- `test_a_parked_car_scores_below_a_car_that_progressed_then_crashed`: the most
-  important property in the fitness function.
 - `test_heldout.py`: pins the published claims to the committed champions,
   including `test_the_snake_champion_only_drives_one_way_round` and
   `test_training_both_ways_round_fixes_it`.
 - `test_editor_measurements_match_numpy`: the editor's TypeScript measurements
   against the numpy originals, on a file exported from the editor's UI.
-- `test_spawn_poses_face_along_the_track`: a broken harness would read as
-  "nothing generalises".
+
+## Project structure
+
+```
+src/           simulation library: tracks, physics, sensors, network, evolution, config
+scripts/       things you run: train, app (live view), drive, evaluate, preview_track
+experiments/   the studies behind the devlog: heldout, generalise, direction, floors, robustness
+tools/         instrumentation: benchmarks, corner sweep, track probes
+data/          committed champions and track files
+docs/          devlog, and results/ with the JSON behind every table
+tests/         pytest suite
+```
 
 ## What I learned
 
@@ -265,9 +227,9 @@ All headless, so they run in CI. The ones worth knowing about:
   predictions failed in the last round alone. Because they were in git before
   the runs, each failure pointed at what to test next instead of getting
   quietly re-explained.
-- **One seed is an anecdote.** The published champion was the most one-sided of
-  five forward seeds. Five seeds per condition cost about 16 minutes in
-  parallel.
+- **One seed is an anecdote.** The published champion was one of two forward
+  seeds, out of the four that learned, that couldn't drive the other way at all. Five seeds per
+  condition cost about 16 minutes in parallel.
 
 ## Build log
 

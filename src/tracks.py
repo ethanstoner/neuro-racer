@@ -23,7 +23,7 @@ through the overlap get nonsense progress deltas. `test_track_does_not_self_
 intersect` enforces this; `tools/probe_tracks.py` scores candidate shapes.
 """
 import numpy as np
-from config import Config
+from src.config import Config
 from src.track import Track
 from src.track_io import is_track_path, load_file, track_stem
 

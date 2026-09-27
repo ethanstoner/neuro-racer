@@ -1,5 +1,5 @@
 import numpy as np
-from config import Config
+from src.config import Config
 from src.net import (unpack, forward_batch, forward_with_hidden,
                      random_population, LAYOUT)
 

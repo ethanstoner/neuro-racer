@@ -11,21 +11,21 @@ resulting prediction was written down first, in docs/devlog/06-prediction.md:
     a champion laps a track iff that track's tightest corner is at or above
     the tightest corner it saw in training.
 
-  python heldout.py                 # the four held-out tracks
-  python heldout.py --all-tracks    # all seven, training set included
-  python heldout.py --json docs/heldout.json
+  python -m experiments.heldout                 # the four held-out tracks
+  python -m experiments.heldout --all-tracks    # all seven, training set included
+  python -m experiments.heldout --json docs/results/heldout.json
 """
 import argparse
 import json
 from pathlib import Path
-from config import Config
+from src.config import Config
 from src.track import min_centerline_radius
 from src.tracks import load, TRAINING, HELD_OUT, BUILDERS
 from src.artifacts import RunRecorder
 from src.robustness import assess
 
 p = argparse.ArgumentParser()
-p.add_argument("--champions", default="champions", help="directory of champion runs")
+p.add_argument("--champions", default="data/champions", help="directory of champion runs")
 p.add_argument("--points", type=int, default=24)
 p.add_argument("--offsets", type=int, default=3)
 p.add_argument("--all-tracks", action="store_true")

@@ -3,7 +3,7 @@ gaussian mutation. Deliberately plain -- the interesting behaviour should come
 from the fitness function and the environment, not from GA cleverness.
 """
 import numpy as np
-from config import Config
+from src.config import Config
 
 
 def mutation_sigma(generation: int, cfg: Config) -> float:

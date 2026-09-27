@@ -2,7 +2,7 @@ import subprocess
 import sys
 from pathlib import Path
 import numpy as np
-from config import Config
+from src.config import Config
 from src.tracks import load
 from src.net import random_population
 from src.simulation import run_generation

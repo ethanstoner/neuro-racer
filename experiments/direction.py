@@ -5,8 +5,8 @@ snake both ways round, on all seven built-ins both ways, and on the generated
 held-out set (procgen seed 7) split by direction. The prediction it tests is in
 docs/devlog/10-prediction-direction.md, committed before the runs.
 
-  python direction.py                         # runs/snake{,-reverse,-both}-seed1..5
-  python direction.py --seeds 1 2 3 --json docs/direction.json
+  python -m experiments.direction                         # runs/snake{,-reverse,-both}-seed1..5
+  python -m experiments.direction --seeds 1 2 3 --json docs/results/direction.json
 """
 import argparse
 import json
@@ -33,7 +33,7 @@ def clockwise(points) -> bool:
 
 def evaluate(job):
     condition, seed, run_dir, generation, points, offsets = job
-    from config import Config
+    from src.config import Config
     from src.artifacts import RunRecorder
     from src.procgen import generate
     from src.robustness import assess

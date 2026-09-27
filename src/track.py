@@ -5,7 +5,7 @@ array lookups -- there is no wall geometry anywhere in the hot loop.
 """
 from dataclasses import dataclass
 import numpy as np
-from config import Config
+from src.config import Config
 
 
 def circle_centerline(cx: float, cy: float, r: float, n: int = 400) -> np.ndarray:

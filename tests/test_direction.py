@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 import numpy as np
 import pytest
-from config import Config
+from src.config import Config
 from src.tracks import load
 
 CFG = Config()
@@ -24,7 +24,7 @@ def test_reversed_track_is_the_same_loop_driven_the_other_way(name):
 
 def test_both_directions_training_records_its_direction(tmp_path):
     out = tmp_path / "run"
-    subprocess.run([sys.executable, "train.py", "--track", "oval", "--direction", "both",
+    subprocess.run([sys.executable, "-m", "scripts.train", "--track", "oval", "--direction", "both",
                     "--generations", "2", "--population", "8", "--out", str(out), "--quiet"],
                    cwd=ROOT, check=True, capture_output=True)
     assert json.loads((out / "config.json").read_text())["direction"] == "both"
@@ -33,7 +33,7 @@ def test_both_directions_training_records_its_direction(tmp_path):
 
 def test_training_on_several_tracks_records_them_all(tmp_path):
     out = tmp_path / "run"
-    subprocess.run([sys.executable, "train.py", "--track", "oval", "chicane",
+    subprocess.run([sys.executable, "-m", "scripts.train", "--track", "oval", "chicane",
                     "--generations", "1", "--population", "8", "--out", str(out), "--quiet"],
                    cwd=ROOT, check=True, capture_output=True)
     info = json.loads((out / "config.json").read_text())
@@ -59,7 +59,7 @@ def test_random_poses_fit_the_car_and_face_along_the_track():
 
 def test_random_start_training_records_it(tmp_path):
     out = tmp_path / "run"
-    subprocess.run([sys.executable, "train.py", "--track", "oval", "--random-starts",
+    subprocess.run([sys.executable, "-m", "scripts.train", "--track", "oval", "--random-starts",
                     "--generations", "2", "--population", "8", "--out", str(out), "--quiet"],
                    cwd=ROOT, check=True, capture_output=True)
     assert json.loads((out / "config.json").read_text())["random_starts"] is True

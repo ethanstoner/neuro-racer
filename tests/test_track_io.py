@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 import numpy as np
 import pytest
-from config import Config
+from src.config import Config
 from src.track import circle_centerline
 from src.track_io import TrackFileError, check, load_file, read, save_file
 from src.tracks import load, slug

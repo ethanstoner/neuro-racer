@@ -1,5 +1,5 @@
 import numpy as np
-from config import Config
+from src.config import Config
 from src.sensors import cast
 
 CFG = Config()

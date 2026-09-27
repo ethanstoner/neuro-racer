@@ -11,7 +11,7 @@ from any of them; a memorised trajectory only works from the pose it was born
 at. Kept free of pygame so it runs in CI alongside the rest of the trainer.
 """
 import numpy as np
-from config import Config
+from src.config import Config
 
 
 def spawn_grid(track, cfg: Config, n_points: int = 24, n_offsets: int = 3) -> np.ndarray:

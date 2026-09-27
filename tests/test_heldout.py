@@ -10,14 +10,14 @@ false, not to reproduce the table to the last percent.
 """
 from pathlib import Path
 import pytest
-from config import Config
+from src.config import Config
 from src.tracks import load
 from src.robustness import assess
 from src.artifacts import RunRecorder
 
 CFG = Config()
 POINTS, OFFSETS = 8, 3
-CHAMPIONS = Path(__file__).resolve().parent.parent / "champions"
+CHAMPIONS = Path(__file__).resolve().parent.parent / "data" / "champions"
 
 
 @pytest.fixture(scope="module")

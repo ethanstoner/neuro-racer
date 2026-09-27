@@ -10,7 +10,7 @@ These tests fail loudly when that happens.
 """
 import numpy as np
 import pytest
-from config import Config
+from src.config import Config
 from src.physics import CarState, step
 from src.track import min_centerline_radius
 from src.tracks import BUILDERS, load

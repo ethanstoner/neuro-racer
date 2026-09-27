@@ -1,6 +1,6 @@
 """Evidence for the "it freezes sometimes" report.
 
-main.py alternates between two things:
+scripts/app.py alternates between two things:
   1. simulate the next generation headless, recording every tick
   2. play those recorded frames back at 60fps
 
@@ -19,7 +19,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
 import numpy as np  # noqa: E402
-from config import Config  # noqa: E402
+from src.config import Config  # noqa: E402
 from src.tracks import load  # noqa: E402
 from src.net import random_population  # noqa: E402
 from src.simulation import run_generation  # noqa: E402

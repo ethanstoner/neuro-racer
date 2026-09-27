@@ -15,7 +15,7 @@ is the worse of its two directions.
 
 The prediction is in docs/devlog/14-prediction-floors.md.
 
-  python floors.py --json docs/floors.json
+  python -m experiments.floors --json docs/results/floors.json
 """
 import argparse
 import json
@@ -24,7 +24,7 @@ from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 import numpy as np
 
-from direction import CONDITIONS
+from experiments.direction import CONDITIONS
 
 REVERSE = {"reverse": [True], "both": [False, True]}   # everything else trained clockwise
 SCALE = 0.9
@@ -56,7 +56,7 @@ def rungs(cfg):
 
 def sweep(job):
     condition, seed, run_dir, generation, points, offsets = job
-    from config import Config
+    from src.config import Config
     from src.artifacts import RunRecorder
     from src.robustness import assess
 
@@ -94,7 +94,7 @@ def main():
                    help="replace these conditions' rows in --json and keep the rest")
     a = p.parse_args()
 
-    from config import Config
+    from src.config import Config
     r = rungs(Config())
     print(f"{len(r)} rungs, {r[0][0]:.0f}px down to {r[-1][0]:.0f}px")
 

@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from config import Config
+from src.config import Config
 from src.fitness import wrapped_delta, FitnessTracker
 
 CFG = Config()

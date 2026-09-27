@@ -1,7 +1,7 @@
 """The generated held-out set: reproducible, valid, and not secretly easy."""
 import numpy as np
 import pytest
-from config import Config
+from src.config import Config
 from src.procgen import generate
 from src.track import Track
 

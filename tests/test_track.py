@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from config import Config
+from src.config import Config
 from src.track import Track, circle_centerline, self_approach_distance
 from src.tracks import BUILDERS, load
 

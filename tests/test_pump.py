@@ -5,7 +5,7 @@ faithful view of the run.
 import time
 import numpy as np
 import pytest
-from config import Config
+from src.config import Config
 from src.tracks import load
 from src.net import random_population
 from src.simulation import run_generation
@@ -72,7 +72,7 @@ def test_submit_returns_immediately(track):
 
 
 def test_wait_calls_the_idle_callback(track):
-    """main.py pumps pygame events through this callback -- without it being
+    """scripts/app.py pumps pygame events through this callback -- without it being
     called, the window still stops responding and nothing is fixed."""
     pop = random_population(CFG.population, CFG, np.random.default_rng(2))
     pump = GenerationPump(track, CFG)

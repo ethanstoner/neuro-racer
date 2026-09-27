@@ -11,7 +11,7 @@ generalisation floor, and it is what the README should be quoting instead of
 the training ceiling.
 
   python tools/corner_sweep.py
-  python tools/corner_sweep.py --json docs/corner-sweep.json
+  python tools/corner_sweep.py --json docs/results/corner-sweep.json
 """
 import argparse
 import json
@@ -24,7 +24,7 @@ import numpy as np
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
-from config import Config                                        # noqa: E402
+from src.config import Config                                        # noqa: E402
 from src.track import Track, min_centerline_radius, self_approach_distance  # noqa: E402
 from src.tracks import TRAINING                                  # noqa: E402
 from src.artifacts import RunRecorder                            # noqa: E402
@@ -46,7 +46,7 @@ def wave(amplitude: float) -> np.ndarray:
 
 
 p = argparse.ArgumentParser()
-p.add_argument("--champions", default="champions")
+p.add_argument("--champions", default="data/champions")
 p.add_argument("--points", type=int, default=16)
 p.add_argument("--offsets", type=int, default=3)
 p.add_argument("--json", default=None)

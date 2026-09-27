@@ -7,7 +7,7 @@ Measured cause of the freezing (tools/profile_live_loop.py, snake, pop 100):
     H-key burst         16.9s
 
 Once cars stop dying early, every generation simulates the full 2400 ticks, and
-main.py did that inline between playbacks with no event pumping at all. Windows
+scripts/app.py did that inline between playbacks with no event pumping at all. Windows
 marks a process that has not pumped its message queue for a couple of seconds as
 not responding, which is exactly what "it freezes sometimes" was -- it starts as
 soon as the cars get good enough to survive.
@@ -48,7 +48,7 @@ class GenerationPump:
     def wait(self, on_wait=None, poll: float = 0.01):
         """Block until the pending generation finishes.
 
-        `on_wait` is called repeatedly while waiting -- main.py pumps pygame
+        `on_wait` is called repeatedly while waiting -- scripts/app.py pumps pygame
         events and redraws through it, which is what actually keeps the window
         alive. Without it this is just a blocking call with extra steps.
         """

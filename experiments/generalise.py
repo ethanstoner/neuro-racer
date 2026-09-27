@@ -3,19 +3,19 @@
 The held-out tracks come from src/procgen.py, so nobody picked them. What was
 predicted before this ran is in docs/devlog/08-prediction-generated.md: a
 champion laps a track iff its tightest corner is at or above that champion's
-floor from the corner sweep (docs/corner-sweep.json).
+floor from the corner sweep (docs/results/corner-sweep.json).
 
-  python generalise.py                              # 100 tracks, seed 7
-  python generalise.py --n 30 --seed 3
-  python generalise.py --extra my.track.json        # add editor-drawn tracks
-  python generalise.py --export tracks/generated    # write the set as track files
-  python generalise.py --json docs/generalisation.json
+  python -m experiments.generalise                              # 100 tracks, seed 7
+  python -m experiments.generalise --n 30 --seed 3
+  python -m experiments.generalise --extra my.track.json        # add editor-drawn tracks
+  python -m experiments.generalise --export data/tracks/generated    # write the set as track files
+  python -m experiments.generalise --json docs/results/generalisation.json
 """
 import argparse
 import json
 from pathlib import Path
 import numpy as np
-from config import Config
+from src.config import Config
 from src.artifacts import RunRecorder
 from src.procgen import generate
 from src.robustness import assess
@@ -26,7 +26,7 @@ from src.tracks import TRAINING, load
 p = argparse.ArgumentParser()
 p.add_argument("--n", type=int, default=100)
 p.add_argument("--seed", type=int, default=7)
-p.add_argument("--champions", default="champions")
+p.add_argument("--champions", default="data/champions")
 p.add_argument("--points", type=int, default=24)
 p.add_argument("--offsets", type=int, default=3)
 p.add_argument("--extra", nargs="*", default=[], help="track files to add to the held-out set")
@@ -37,7 +37,7 @@ args = p.parse_args()
 cfg = Config()
 root = Path(args.champions)
 
-sweep = json.loads(Path("docs/corner-sweep.json").read_text(encoding="utf-8"))
+sweep = json.loads(Path("docs/results/corner-sweep.json").read_text(encoding="utf-8"))
 floor = {c: min((r["radius"] for r in rungs if r["passed"]), default=None) for c, rungs in sweep.items()}
 
 generated = generate(args.n, args.seed, cfg)

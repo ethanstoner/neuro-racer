@@ -1,4 +1,4 @@
-"""Copy the final champion of each run into `champions/`, which is committed.
+"""Copy the final champion of each run into `data/champions/`, which is committed.
 
 `runs/` is gitignored -- it holds a genome for every generation and gets large.
 But that means nothing in the repo backs up the lap times in the README. This
@@ -7,7 +7,7 @@ and its measured result, so anyone cloning the repo can replay the champions
 and check the numbers rather than taking them on trust.
 
   python tools/export_champions.py
-  python evaluate.py --run champions/snake --track oval
+  python -m scripts.evaluate --run data/champions/snake --track oval
 """
 import json
 import os
@@ -19,12 +19,12 @@ ROOT = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, str(ROOT))
 
 import numpy as np  # noqa: E402
-from config import Config  # noqa: E402
+from src.config import Config  # noqa: E402
 from src.tracks import load, BUILDERS  # noqa: E402
 from src.artifacts import RunRecorder  # noqa: E402
 from src.simulation import run_generation  # noqa: E402
 
-out_root = ROOT / "champions"
+out_root = ROOT / "data" / "champions"
 out_root.mkdir(exist_ok=True)
 summary = []
 

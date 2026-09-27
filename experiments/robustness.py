@@ -3,12 +3,12 @@
 Drops a champion at many poses around the lap and counts how many it survives.
 The harness itself lives in `src/robustness.py`; this is the CLI over it.
 
-  python robustness.py --run champions/oval
-  python robustness.py --run champions/snake --all-tracks
+  python -m experiments.robustness --run data/champions/oval
+  python -m experiments.robustness --run data/champions/snake --all-tracks
 """
 import argparse
 import numpy as np
-from config import Config
+from src.config import Config
 from src.tracks import load, BUILDERS
 from src.artifacts import RunRecorder
 from src.robustness import assess

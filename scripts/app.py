@@ -1,9 +1,9 @@
 """NeuroRacer -- watch cars teach themselves to drive.
 
-  python main.py --track snake
-  python main.py --track snake --population 300 --speed 4
-  python main.py --track oval --shot 12       render generation 12 to PNG and exit
-  python main.py --track snake --filmstrip 80 one frame per generation, for the GIF
+  python -m scripts.app --track snake
+  python -m scripts.app --track snake --population 300 --speed 4
+  python -m scripts.app --track oval --shot 12       render generation 12 to PNG and exit
+  python -m scripts.app --track snake --filmstrip 80 one frame per generation, for the GIF
 
 Generation N+1 is simulated on a worker thread while generation N plays back,
 so the window never stops responding. Simulation still happens strictly before
@@ -32,7 +32,7 @@ if HEADLESS:
 
 import numpy as np
 import pygame
-from config import Config
+from src.config import Config
 from src.tracks import load, slug
 from src.net import random_population
 from src.simulation import run_generation

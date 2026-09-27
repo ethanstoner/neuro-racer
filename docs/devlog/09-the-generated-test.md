@@ -5,7 +5,7 @@ ran. 100 tracks from `src/procgen.py` (seed 7), 72 starts per champion per
 track, 1m37s in total:
 
 ```
-python generalise.py --n 100 --seed 7 --json docs/generalisation.json
+python -m experiments.generalise --n 100 --seed 7 --json docs/results/generalisation.json
 ```
 
 | Champion | floor | own track | generated mean | tracks lapped | predicted | correct |

@@ -1,7 +1,7 @@
 """Drive the track yourself. Arrow keys. Sets the human baseline lap time.
 
-  python drive.py oval
-  python drive.py snake --auto 6      headless self-check, no display needed
+  python -m scripts.drive oval
+  python -m scripts.drive snake --auto 6      headless self-check, no display needed
 
 Deliberately kept in the repo after the AI works: the final devlog entry
 compares the evolved champion against these human times.
@@ -20,7 +20,7 @@ if args.auto:
 
 import numpy as np
 import pygame
-from config import DEFAULT as CFG
+from src.config import DEFAULT as CFG
 from src.tracks import load, slug
 from src.physics import CarState, step
 from src.sensors import cast

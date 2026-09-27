@@ -1,7 +1,7 @@
 """Arcade car physics over whole-population arrays. Pure: no I/O, no globals."""
 from dataclasses import dataclass
 import numpy as np
-from config import Config
+from src.config import Config
 
 
 @dataclass

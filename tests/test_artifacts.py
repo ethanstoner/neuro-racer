@@ -1,6 +1,6 @@
 import json
 import numpy as np
-from config import Config
+from src.config import Config
 from src.artifacts import RunRecorder
 
 CFG = Config()

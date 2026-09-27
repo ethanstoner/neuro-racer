@@ -7,8 +7,8 @@ for both-ways. Every champion is the final generation's, scored from 72 starts
 per track by `direction.py`:
 
 ```
-python train.py --track snake --direction forward|reverse|both --seed N --generations 200
-python direction.py --json docs/direction.json
+python -m scripts.train --track snake --direction forward|reverse|both --seed N --generations 200
+python -m experiments.direction --json docs/results/direction.json
 ```
 
 Seed 1 forward rebuilt the published snake champion bit for bit, so the
@@ -110,9 +110,9 @@ ways, clears corners 0.58 of its hardest training corner.
 Reproduce:
 
 ```
-python train.py --track snake --direction both --seed 1 --generations 200
-python direction.py --json docs/direction.json
+python -m scripts.train --track snake --direction both --seed 1 --generations 200
+python -m experiments.direction --json docs/results/direction.json
 ```
 
-`champions/snake-both` is the seed 1 both-ways champion, pinned by
+`data/champions/snake-both` is the seed 1 both-ways champion, pinned by
 `test_training_both_ways_round_fixes_it`.

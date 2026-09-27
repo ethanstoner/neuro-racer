@@ -1,5 +1,5 @@
 import numpy as np
-from config import Config
+from src.config import Config
 
 
 def test_genome_size_matches_layer_shapes():

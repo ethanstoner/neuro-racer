@@ -1,7 +1,7 @@
 """Track viewer.
 
-  python preview_track.py oval            open a window
-  python preview_track.py oval --shot     render once to docs/devlog/img and exit
+  python -m scripts.preview_track oval            open a window
+  python -m scripts.preview_track oval --shot     render once to docs/devlog/img and exit
 
 The --shot path uses SDL's dummy video driver, so it works without a display
 and is what the build process uses to verify tracks actually look right.
@@ -20,7 +20,7 @@ if args.shot:
 
 import numpy as np
 import pygame
-from config import DEFAULT as CFG
+from src.config import DEFAULT as CFG
 from src.tracks import load, slug
 from src.sensors import cast
 from src.render.track_panel import build_track_surface, draw_cars, draw_rays

@@ -1,10 +1,10 @@
 """Headless training.
 
-  python train.py --track oval --generations 150
-  python train.py --track snake --generations 200 --seed 3
-  python train.py --track snake --direction both     # every car drives both ways
-  python train.py --track snake chicane              # every car drives both tracks
-  python train.py --track snake --random-starts      # a new start pose every generation
+  python -m scripts.train --track oval --generations 150
+  python -m scripts.train --track snake --generations 200 --seed 3
+  python -m scripts.train --track snake --direction both     # every car drives both ways
+  python -m scripts.train --track snake chicane              # every car drives both tracks
+  python -m scripts.train --track snake --random-starts      # a new start pose every generation
 
 --direction both scores each car on the track in both directions and ranks it by
 the mean. Several --track names do the same across tracks. Either way, a car
@@ -13,7 +13,7 @@ only counts as lapping if it laps every one, and its lap time is its slowest.
 import argparse
 import time
 import numpy as np
-from config import Config
+from src.config import Config
 from src.tracks import load, slug
 from src.net import random_population
 from src.simulation import run_generation

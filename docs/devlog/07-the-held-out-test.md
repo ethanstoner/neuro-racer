@@ -110,6 +110,6 @@ cliff, and the oval champion's total absence of a floor.
 Reproduce:
 
 ```bash
-python heldout.py --json docs/heldout.json
-python tools/corner_sweep.py --json docs/corner-sweep.json
+python -m experiments.heldout --json docs/results/heldout.json
+python tools/corner_sweep.py --json docs/results/corner-sweep.json
 ```

@@ -13,7 +13,7 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 import numpy as np
-from config import Config
+from src.config import Config
 from src.track import (Track, _resample_closed, min_centerline_radius,
                        self_approach_distance)
 

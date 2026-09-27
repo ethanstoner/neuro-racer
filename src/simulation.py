@@ -7,7 +7,7 @@ arrays every tick would cost more than simply computing the dead ones.
 from dataclasses import dataclass
 from typing import Optional
 import numpy as np
-from config import Config
+from src.config import Config
 from src.physics import CarState, step
 from src.sensors import cast
 from src.net import forward_with_hidden

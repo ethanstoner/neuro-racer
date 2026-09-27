@@ -4,9 +4,9 @@ Predictions: [14](14-prediction-floors.md), committed in b6e2c51, with the
 ruler amended in 341c17c before any champion was scored.
 
 ```
-python train.py --track snake --random-starts --seed N --generations 400
-python floors.py --json docs/floors.json
-python direction.py --json docs/direction.json
+python -m scripts.train --track snake --random-starts --seed N --generations 400
+python -m experiments.floors --json docs/results/floors.json
+python -m experiments.direction --json docs/results/direction.json
 ```
 
 ## A. The floor

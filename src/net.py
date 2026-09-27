@@ -6,7 +6,7 @@ every connection can be drawn individually in the visualiser and stay legible,
 and a small search space is exactly what a genetic algorithm wants.
 """
 import numpy as np
-from config import Config
+from src.config import Config
 
 
 def LAYOUT(cfg: Config) -> dict:

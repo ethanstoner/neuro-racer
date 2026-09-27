@@ -6,7 +6,7 @@ It is fully vectorised over (cars x rays x samples) as a single gather, and it
 has no geometric edge cases to get subtly wrong.
 """
 import numpy as np
-from config import Config
+from src.config import Config
 
 
 def cast(pos: np.ndarray, angle: np.ndarray,

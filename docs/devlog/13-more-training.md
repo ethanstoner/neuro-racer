@@ -9,12 +9,12 @@ forward-400 run's generation 199 is bit-identical to the matching 200-generation
 run, so forward-400 is the forward runs trained for longer, not new runs.
 
 ```
-python train.py --track snake --generations 400 --seed N --out runs/snake-400gen-seedN
-python train.py --track snake chicane --seed N
-python direction.py --json docs/direction.json
+python -m scripts.train --track snake --generations 400 --seed N --out runs/snake-400gen-seedN
+python -m scripts.train --track snake chicane --seed N
+python -m experiments.direction --json docs/results/direction.json
 ```
 
-Summary across seeds (full per-seed table in `docs/direction.json`):
+Summary across seeds (full per-seed table in `docs/results/direction.json`):
 
 | Condition | generated tracks lapped, per seed | median | ≥45 of 50 counter-clockwise | tight clockwise (of 7), per seed |
 | --- | --- | --- | --- | --- |

@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from config import Config
+from src.config import Config
 from src.net import random_population
 from src.evolve import next_generation, tournament_select, mutation_sigma
 
