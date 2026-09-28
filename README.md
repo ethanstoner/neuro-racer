@@ -7,7 +7,7 @@ one question: when a trained policy looks like it generalises, does it? Every
 claim here was tested with a prediction committed to git before the run, and
 several of those predictions were wrong.
 
-**Live demo: https://neuroracer-editor.pages.dev**, the companion track
+**Live demo: https://neuroracer.ethanstoner.dev**, the companion track
 editor, which runs in the browser. Training and the experiments run locally in
 Python.
 
@@ -148,7 +148,7 @@ tuning ever makes flooring it optimal everywhere.
 
 Tracks are drawn in [virtual-world](https://github.com/ethanstoner/virtual-world),
 a browser editor built for this project. It runs entirely in the browser, with
-nothing to install: [neuroracer-editor.pages.dev](https://neuroracer-editor.pages.dev).
+nothing to install: [neuroracer-editor.pages.dev](https://neuroracer.ethanstoner.dev).
 It re-measures the track on every drag (2.5 to 3.8ms per analysis) using TypeScript ports of the trainer's
 measurements, blocks export while a track breaks a rule the trainer enforces,
 and writes the JSON `scripts.train --track` loads directly. Parity is tested in
