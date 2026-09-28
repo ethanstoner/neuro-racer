@@ -7,6 +7,10 @@ one question: when a trained policy looks like it generalises, does it? Every
 claim here was tested with a prediction committed to git before the run, and
 several of those predictions were wrong.
 
+**Live demo: https://neuroracer-editor.pages.dev**, the companion track
+editor, which runs in the browser. Training and the experiments run locally in
+Python.
+
 ![80 generations of learning to drive](docs/devlog/img/learning.gif)
 
 *80 generations on `snake`, unedited. Generation 0 puts 7 of 100 cars through a
@@ -143,8 +147,9 @@ tuning ever makes flooring it optimal everywhere.
 ![Track editor: dragging a handle pinches the loop, two checks fail and Export locks](docs/media/track-editor.gif)
 
 Tracks are drawn in [virtual-world](https://github.com/ethanstoner/virtual-world),
-a browser editor built for this project. It re-measures the track on every
-drag (2.5 to 3.8ms per analysis) using TypeScript ports of the trainer's
+a browser editor built for this project. It runs entirely in the browser, with
+nothing to install: [neuroracer-editor.pages.dev](https://neuroracer-editor.pages.dev).
+It re-measures the track on every drag (2.5 to 3.8ms per analysis) using TypeScript ports of the trainer's
 measurements, blocks export while a track breaks a rule the trainer enforces,
 and writes the JSON `scripts.train --track` loads directly. Parity is tested in
 both directions: a file exported from the editor's UI is a fixture here, and a
@@ -171,15 +176,19 @@ file written here is a fixture there.
 
 ## Getting started
 
+Python 3.11 or 3.12. From the repo root:
+
 ```bash
 python -m venv venv
-venv\Scripts\python.exe -m pip install -r requirements.txt
+source venv/bin/activate          # Windows: venv\Scripts\activate
+pip install -r requirements.txt
 
-venv\Scripts\python.exe -m scripts.app --track snake        # watch it learn
-venv\Scripts\python.exe -m scripts.drive snake              # drive it yourself
-venv\Scripts\python.exe -m scripts.train --track snake --generations 200
+python -m scripts.app --track snake        # watch it learn (opens a window)
+python -m scripts.drive snake              # drive it yourself
+python -m scripts.train --track snake --generations 200
 ```
 
+`scripts.train` is headless; `--generations 3` is a one-second smoke test.
 Run everything from the repo root. `scripts.train` also takes
 `--direction both`, several track names (`--track snake chicane`),
 `--random-starts`, and track files from the virtual-world editor
@@ -194,10 +203,10 @@ The champions are committed under `data/champions/`, so none of this has to be
 taken on trust:
 
 ```bash
-venv\Scripts\python.exe -m experiments.heldout      # the four hand-made held-out tracks
-venv\Scripts\python.exe -m experiments.generalise   # champions vs 100 generated tracks
-venv\Scripts\python.exe -m experiments.direction    # every training condition, both directions
-venv\Scripts\python.exe -m experiments.floors       # the 32-rung corner sweep
+python -m experiments.heldout      # the four hand-made held-out tracks
+python -m experiments.generalise   # champions vs 100 generated tracks
+python -m experiments.direction    # every training condition, both directions
+python -m experiments.floors       # the 32-rung corner sweep
 ```
 
 `experiments.direction` and `experiments.floors` read training runs from
@@ -207,8 +216,10 @@ devlog. Results land in `docs/results/`.
 ## Testing
 
 ```bash
-venv\Scripts\python.exe -m pytest        # 213 tests, all headless, run in CI
+python -m pytest        # 212 tests, all headless, run in CI
 ```
+
+On a machine with no display, set `SDL_VIDEODRIVER=dummy` first, as CI does.
 
 The ones worth knowing about:
 
