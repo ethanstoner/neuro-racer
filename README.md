@@ -179,7 +179,7 @@ file written here is a fixture there.
 Python 3.11 or 3.12. From the repo root:
 
 ```bash
-python -m venv venv
+python3 -m venv venv              # Windows: python -m venv venv
 source venv/bin/activate          # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
