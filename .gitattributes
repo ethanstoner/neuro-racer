@@ -11,6 +11,5 @@
 
 # Generated artifacts. They are committed so published results can be
 # re-measured, but they are noise in a diff and in review.
-champions/**/champions.json linguist-generated
-docs/heldout.json           linguist-generated
-docs/corner-sweep.json      linguist-generated
+data/champions/**/champions.json linguist-generated
+docs/results/*.json              linguist-generated
