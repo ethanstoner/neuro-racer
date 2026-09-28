@@ -14,15 +14,12 @@ MD_LINK = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
 
 
 def _markdown_files():
-    """Every markdown file that is actually present.
+    """Every committed markdown file: the devlog and the README.
 
-    PROJECT_STATUS.md is developer-local and gitignored, so it exists in my
-    working copy and in no clone of this repo. Naming it unconditionally made
-    the whole suite fail for anyone who checked the project out -- including
-    CI, which is where it was finally noticed.
+    Only tracked files are listed, so the suite collects the same tests in a
+    fresh clone as in a working copy with local notes lying around.
     """
-    candidates = sorted(DOCS.glob("*.md")) + [ROOT / "README.md", ROOT / "PROJECT_STATUS.md"]
-    return [p for p in candidates if p.exists()]
+    return sorted(DOCS.glob("*.md")) + [ROOT / "README.md"]
 
 
 @pytest.mark.parametrize("path", _markdown_files(), ids=lambda p: p.name)
