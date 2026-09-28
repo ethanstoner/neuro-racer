@@ -148,7 +148,7 @@ tuning ever makes flooring it optimal everywhere.
 
 Tracks are drawn in [virtual-world](https://github.com/ethanstoner/virtual-world),
 a browser editor built for this project. It runs entirely in the browser, with
-nothing to install: [neuroracer-editor.pages.dev](https://neuroracer.ethanstoner.dev).
+nothing to install: [neuroracer.ethanstoner.dev](https://neuroracer.ethanstoner.dev).
 It re-measures the track on every drag (2.5 to 3.8ms per analysis) using TypeScript ports of the trainer's
 measurements, blocks export while a track breaks a rule the trainer enforces,
 and writes the JSON `scripts.train --track` loads directly. Parity is tested in
